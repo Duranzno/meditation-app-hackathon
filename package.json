@@ -1,10 +1,11 @@
 {
-  "name": "meditationApp",
+  "name": "meditation-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "blitz start",
+    "start-blitz": "blitz start",
+    "start": "docker-compose up -d && yarn start-blitz",
     "studio": "blitz db studio",
-    "build": "blitz build",
+    "build": "NODE_ENV=production blitz db migrate && blitz build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -34,24 +35,26 @@
     "@prisma/cli": "2.x",
     "@prisma/client": "2.x",
     "blitz": "0.24.3",
+    "final-form": "4.20.1",
     "react": "0.0.0-experimental-7f28234f8",
     "react-dom": "0.0.0-experimental-7f28234f8",
     "react-error-boundary": "2.3.2",
+    "react-final-form": "6.x",
     "secure-password": "4.x",
-    "zod": "1.x",
-    "final-form": "4.20.1",
-    "react-final-form": "6.x"
+    "zod": "1.x"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.x",
     "@testing-library/react-hooks": "3.x",
+    "@types/chance": "1.1.0",
     "@types/jest": "26.0.14",
     "@types/react": "16.x",
     "@types/secure-password": "3.x",
     "@typescript-eslint/eslint-plugin": "4.x",
     "@typescript-eslint/parser": "4.x",
     "babel-eslint": "10.1.0",
+    "chance": "1.1.7",
     "eslint": "7.x",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "5.x",
@@ -63,12 +66,12 @@
     "jest": "26.x",
     "jest-environment-jsdom-fourteen": "1.0.1",
     "jest-watch-typeahead": "0.x",
-    "react-test-renderer": "16.14.0",
     "lint-staged": "10.x",
     "prettier": "2.x",
     "pretty-quick": "3.1.0",
-    "typescript": "4.x",
-    "ts-jest": "26.x"
+    "react-test-renderer": "16.14.0",
+    "ts-jest": "26.x",
+    "typescript": "4.x"
   },
   "private": true
 }
