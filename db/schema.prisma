@@ -60,3 +60,12 @@ model Event {
   // signature for link is ${BASE_URL}/sessions/${event.id} where BASE_URL is an env
   // variable for the jitsi meet integration and sessions is the path Aashna chooses for the  page
 }
+
+model Category {
+  id        Int      @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   Int      
+}
