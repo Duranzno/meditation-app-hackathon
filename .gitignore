@@ -52,3 +52,5 @@ lib-cov
 .vscode-test
 examples/
 meditation.code-workspace
+
+.vercel/
