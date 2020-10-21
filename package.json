@@ -8,7 +8,9 @@
     "build": "NODE_ENV=production blitz db migrate && blitz build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "pre-commit": "tsc && lint-staged && pretty-quick --staged",
+    "pre-push": "npm run lint && npm run test"
   },
   "browserslist": [
     "defaults"
@@ -21,10 +23,7 @@
     "printWidth": 100
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged && pretty-quick --staged",
-      "pre-push": "npm run lint && npm run test"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
