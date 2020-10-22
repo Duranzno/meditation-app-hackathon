@@ -1,0 +1,23 @@
+.dropzone-container {
+  background: $color-yellow-opaque;
+  border: 1px dashed #000000;
+  box-sizing: border-box;
+  border-radius: 18px;
+
+  .dropzone-label {
+    padding: 1.5rem 2.5rem;
+    /* 21 - ExtraBold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 21px;
+    line-height: 28px;
+
+    /* identical to box height, or 133% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+  }
+}
