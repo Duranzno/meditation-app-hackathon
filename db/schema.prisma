@@ -56,4 +56,6 @@ model Event {
   duration    Int // integer represents minutes
   online      Boolean  @default(true)
   location    String
+  // TODO: implement ownership relation with user - a user should own a given event, be the only one
+  // allowed to edit it.
 }

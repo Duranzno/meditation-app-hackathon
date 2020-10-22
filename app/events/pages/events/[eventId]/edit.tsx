@@ -21,11 +21,20 @@ export const EditEvent = () => {
 
       <EventForm
         initialValues={event}
-        onSubmit={async () => {
+        onSubmit={async values => {
           try {
             const updated = await updateEventMutation({
               where: { id: event.id },
-              data: { name: "MyNewName" },
+              data: {
+                name: values.name,
+                tags: values.tags,
+                title: values.title,
+                description: values.description,
+                datetime: new Date(values.datetime),
+                duration: values.duration,
+                online: values.online,
+                location: values.location
+              },
             })
             await mutate(updated)
             alert("Success!" + JSON.stringify(updated))
