@@ -7,12 +7,13 @@ type EventFormProps = {
   onSubmit: React.FormEventHandler<HTMLFormElement>
 }
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 // TODO: replace dummy onSubmit with createEvent mutation
 const onSubmit = async values => {
-  await sleep(200);
-  window.alert(JSON.stringify(values, 0, 2))
+  console.log(values)
+  // await sleep(200);
+  // window.alert(JSON.stringify(values, 0, 2))
 }
 
 const EventForm = ({ initialValues }: EventFormProps) => {

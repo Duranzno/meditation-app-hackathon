@@ -16,7 +16,7 @@ import deleteEvent from "app/events/mutations/deleteEvent"
  */
 export const Event = () => {
   const router = useRouter()
-  const eventId = useParam("eventId", "number")
+  const eventId = useParam("eventId", "string")
   const [event] = useQuery(getEvent, { where: { id: eventId } })
   const [deleteEventMutation] = useMutation(deleteEvent)
 

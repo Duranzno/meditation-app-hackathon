@@ -1,0 +1,209 @@
+$color-contra-blue: rgba(25, 71, 229, 1);
+$color-blue-800: rgba(128, 148, 255, 1);
+$color-contra-blue-100: rgba(233, 231, 252, 1);
+$color-white: rgba(255, 255, 255, 1);
+$color-pink: rgba(255, 137, 187, 1);
+$color-pink-800: rgba(255, 199, 222, 1);
+$color-pink-200: rgba(255, 243, 248, 1);
+$color-black: rgba(24, 25, 31, 1);
+$color-black-800: rgba(71, 74, 87, 1);
+$color-black-300: rgba(159, 164, 180, 1);
+$color-black-700: rgba(150, 155, 171, 1);
+$color-black-200: rgba(238, 239, 244, 1);
+$color-black-100: rgba(244, 245, 247, 1);
+$color-yellow: rgba(255, 189, 18, 1);
+$color-yellow-800: rgba(255, 212, 101, 1);
+$color-yellow-opaque: rgba(255, 212, 101, 0.6);
+$color-yellow-100: rgba(255, 244, 204, 1);
+$color-green: rgba(0, 198, 174, 1);
+$color-green-800: rgba(97, 228, 197, 1);
+$color-green-100: rgba(214, 252, 247, 1);
+$color-red: rgba(249, 90, 44, 1);
+$color-red-800: rgba(255, 150, 146, 1);
+$color-red-100: rgba(255, 232, 232, 1);
+$color-black-overlay: rgba(24, 25, 31, 0.3);
+@mixin font-44-extrabold {
+  font-size: 44px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 54px;
+}
+@mixin font-44-bold {
+  font-size: 44px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 54px;
+}
+@mixin font-44-medium {
+  font-size: 44px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 54px;
+}
+@mixin font-36-bold-spaced {
+  font-size: 36px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 40px;
+}
+@mixin font-36-extrabold {
+  font-size: 36px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 40px;
+}
+@mixin font-36-bold {
+  font-size: 36px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 40px;
+}
+@mixin font-36-medium {
+  font-size: 36px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 40px;
+}
+@mixin font-27-extrabold {
+  font-size: 27px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 32px;
+}
+@mixin font-27-bold {
+  font-size: 27px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 32px;
+}
+@mixin font-27-medium {
+  font-size: 27px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 32px;
+}
+@mixin font-24-extrabold {
+  font-size: 24px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 28px;
+}
+@mixin font-24-bold {
+  font-size: 24px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 28px;
+}
+@mixin font-24-medium {
+  font-size: 24px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 28px;
+}
+@mixin font-21-extrabold {
+  font-size: 21px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 28px;
+}
+@mixin font-21-bold {
+  font-size: 21px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 28px;
+}
+@mixin font-21-medium {
+  font-size: 21px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 28px;
+}
+@mixin font-17-extrabold {
+  font-size: 17px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 24px;
+}
+@mixin font-17-bold {
+  font-size: 17px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 24px;
+}
+@mixin font-17-medium {
+  font-size: 17px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 24px;
+}
+@mixin font-15-extrabold {
+  font-size: 15px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 20px;
+}
+@mixin font-15-bold {
+  font-size: 15px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 20px;
+}
+@mixin font-15-medium {
+  font-size: 15px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 20px;
+}
+@mixin font-13-extrabold {
+  font-size: 13px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 18px;
+}
+@mixin font-13-bold {
+  font-size: 13px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 18px;
+}
+@mixin font-13-medium {
+  font-size: 13px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 18px;
+}
+@mixin font-12-extrabold {
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+  line-height: 16px;
+}
+@mixin font-12-bold {
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 16px;
+}
+@mixin font-12-medium {
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 16px;
+}
+@mixin font-11-extrabold {
+  font-size: 11px;
+  font-family: "Montserrat";
+  font-weight: extrabold;
+}
+@mixin font-11-bold {
+  font-size: 11px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  line-height: 16px;
+}
+@mixin font-11-medium {
+  font-size: 11px;
+  font-family: "Montserrat";
+  font-weight: medium;
+  line-height: 16px;
+}
