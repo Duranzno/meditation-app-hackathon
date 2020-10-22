@@ -5,9 +5,6 @@ import createEvent from "app/events/mutations/createEvent"
 import EventForm from "app/events/components/EventForm"
 
 // TODO: migrate from events/new page to modal/sidebar components integrated with events index page
-// TODO: figure out URL schema with Aashna for meetings
-
-const URL = "localhost:3000/events/new"
 
 const defaults = {
   "tags": ["meditation"],
@@ -17,7 +14,6 @@ const defaults = {
   "datetime": "",
   "duration": 30,
   "online": true,
-  "link": "localhost:3000/events"
 }
 
 const NewEventPage: BlitzPage = () => {
@@ -30,18 +26,18 @@ const NewEventPage: BlitzPage = () => {
 
       <EventForm
         initialValues={defaults}
-        onSubmit={async () => {
+        onSubmit={async evt => {
+          console.log(evt)
           try {
             const event = await createEventMutation({
               data: {
-                name: defaults.name,
-                title: defaults.title,
-                description: defaults.description,
-                datetime: defaults.datetime,
-                duration: defaults.duration,
-                online: defaults.online,
-                location: "",
-                link: `${URL}`
+                name: evt.name,
+                title: evt.title,
+                description: evt.description,
+                datetime: new Date(evt.datetime),
+                duration: evt.duration,
+                online: evt.online,
+                location: evt.location ? evt.location : ""
               }
             })
             alert("Success!" + JSON.stringify(event))

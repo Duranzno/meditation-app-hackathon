@@ -5,13 +5,13 @@
 // 1. Comment this datasource
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 // 2. Uncomment this datasource
 // datasource sqlite {
 //   provider = "sqlite"
-//  url      = "file:./db.sqlite" //use this on local
+//  url = "***"
 // }
 generator client {
   provider = "prisma-client-js"

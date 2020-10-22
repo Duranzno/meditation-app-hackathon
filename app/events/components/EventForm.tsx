@@ -10,12 +10,12 @@ type EventFormProps = {
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 // TODO: replace dummy onSubmit with createEvent mutation
-const onSubmit = async values => {
-  await sleep(200);
-  window.alert(JSON.stringify(values, 0, 2))
-}
+// const onSubmit = async values => {
+//   await sleep(200);
+//   window.alert(JSON.stringify(values, 0, 2))
+// }
 
-const EventForm = ({ initialValues }: EventFormProps) => {
+const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
   // TODO: replace HTML5 input/form components with react-bootstrap
   return (
     <Form
@@ -29,7 +29,6 @@ const EventForm = ({ initialValues }: EventFormProps) => {
               name="name"
               component="input"
               type="text"
-            // placeholder="Session Name"
             />
           </div>
           <div>
@@ -45,7 +44,7 @@ const EventForm = ({ initialValues }: EventFormProps) => {
             <Field
               name="description"
               component="textarea"
-              type="text"
+              type="input"
             />
           </div>
           <div>

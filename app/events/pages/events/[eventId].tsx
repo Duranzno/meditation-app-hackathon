@@ -9,8 +9,13 @@ import deleteEvent from "app/events/mutations/deleteEvent"
 
 export const Event = () => {
   const router = useRouter()
-  const eventId = useParam("eventId", "number")
-  const [event] = useQuery(getEvent, { where: { id: eventId } })
+  //const eventId = useParam("id", "string") // TODO: debug useParam hook --- this fails to return the corresponding event from the database
+
+  // TODO: evaluate this implementation - since the URL includes the eventID to render this page,
+  // I used the next/router (blitz router?) to get the path and split off the event ID for the query
+  // feels hacky, but it works.
+  const newId = router.asPath.split("/events/")[1]
+  const [event] = useQuery(getEvent, { where: { id: newId } })
   const [deleteEventMutation] = useMutation(deleteEvent)
 
   return (
