@@ -5,13 +5,13 @@
 // 1. Comment this datasource
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 // 2. Uncomment this datasource
 // datasource sqlite {
 //   provider = "sqlite"
-//  url      = "file:./db.sqlite" //use this on local
+//  url = "***"
 // }
 generator client {
   provider = "prisma-client-js"
@@ -53,19 +53,8 @@ model Event {
   title       String
   description String
   datetime    DateTime
-  duration    Int // integer represents minutes
+  duration    Int
   online      Boolean  @default(true)
   location    String
-  link        String
-  // signature for link is ${BASE_URL}/sessions/${event.id} where BASE_URL is an env
-  // variable for the jitsi meet integration and sessions is the path Aashna chooses for the  page
-}
-
-model Category {
-  id        Int      @default(autoincrement()) @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   
-  event     Event    @relation(fields: [eventId], references: [id])
-  eventId   Int      
+  link        String // signature is ${BASE_URL}/${event.id} where BASE_URL is an env variable for the jitsi meet integration
 }

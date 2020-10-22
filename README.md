@@ -11,6 +11,9 @@ Run your app in the development mode.
 ```
 blitz start
 ```
+NOTE: make sure you've got postgres already running (`docker-compose up` in root directory).
+If you experience errors, run `blitz db migrate`. It's possible the app is attempting to make API calls,
+requesting models that haven't been registered with the database yet.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
