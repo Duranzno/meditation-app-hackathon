@@ -5,17 +5,11 @@ import getEvent from "app/events/queries/getEvent"
 import deleteEvent from "app/events/mutations/deleteEvent"
 
 // TODO: eliminate individual event page in favor of event modal on events index page
-// TODO: make corrections from scaffolded pseudo-model to actual prisma schema
 
 export const Event = () => {
   const router = useRouter()
-  //const eventId = useParam("id", "string") // TODO: debug useParam hook --- this fails to return the corresponding event from the database
-
-  // TODO: evaluate this implementation - since the URL includes the eventID to render this page,
-  // I used the next/router (blitz router?) to get the path and split off the event ID for the query
-  // feels hacky, but it works.
-  const newId = router.asPath.split("/events/")[1]
-  const [event] = useQuery(getEvent, { where: { id: newId } })
+  const eventId = useParam("eventId", "string")
+  const [event] = useQuery(getEvent, { where: { id: eventId } })
   const [deleteEventMutation] = useMutation(deleteEvent)
 
   return (

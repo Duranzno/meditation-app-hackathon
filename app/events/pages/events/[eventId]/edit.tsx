@@ -10,7 +10,7 @@ import EventForm from "app/events/components/EventForm"
 
 export const EditEvent = () => {
   const router = useRouter()
-  const eventId = useParam("id", "string")
+  const eventId = useParam("eventId", "string")
   const [event, { mutate }] = useQuery(getEvent, { where: { id: eventId } })
   const [updateEventMutation] = useMutation(updateEvent)
 
