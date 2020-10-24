@@ -11,7 +11,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "pre-commit": "tsc && lint-staged && pretty-quick --staged",
-    "pre-push": "npm run lint && npm run test"
+    "pre-push": "npm run lint && npm run test",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     "defaults"
@@ -48,6 +50,11 @@
     "zod": "1.x"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.27",
+    "@storybook/addon-essentials": "^6.0.27",
+    "@storybook/addon-links": "^6.0.27",
+    "@storybook/react": "^6.0.27",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.x",
     "@testing-library/react-hooks": "3.x",
@@ -58,6 +65,7 @@
     "@typescript-eslint/eslint-plugin": "4.x",
     "@typescript-eslint/parser": "4.x",
     "babel-eslint": "10.1.0",
+    "babel-loader": "^8.1.0",
     "chance": "1.1.7",
     "eslint": "7.x",
     "eslint-config-react-app": "5.2.1",
@@ -73,6 +81,7 @@
     "lint-staged": "10.x",
     "prettier": "2.x",
     "pretty-quick": "3.1.0",
+    "react-is": "^17.0.1",
     "react-test-renderer": "16.14.0",
     "ts-jest": "26.x",
     "typescript": "4.x"
