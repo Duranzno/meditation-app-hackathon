@@ -21,9 +21,6 @@ const CardsContainer: React.FC<Props> = (props) => {
             }) => {return (
                 <Grid 
                 item 
-                justify="center" 
-                direction="row" 
-                alignItems="flex-start" 
                 xs={3}>
                     <DetailedEventCard card={card}>  </DetailedEventCard>
                 </Grid>
@@ -41,7 +38,7 @@ const CardsContainer: React.FC<Props> = (props) => {
             direction="row" 
             alignItems="flex-start" 
             xs={12} 
-            spacing={3}
+            spacing={4}
             >
                 {renderCards()}
             </Grid>

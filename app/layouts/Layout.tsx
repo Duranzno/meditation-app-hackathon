@@ -55,7 +55,6 @@ const Layout = ({ title, children }: LayoutProps) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {renderCards()}
-
       </main>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />

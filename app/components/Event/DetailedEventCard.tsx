@@ -48,6 +48,7 @@ const DetailedEventCard: React.FC<Props> = (props: Props) => {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
           {props.card.date}
+          <br/>
           {props.card.time}
           </Typography>
         </CardContent>
