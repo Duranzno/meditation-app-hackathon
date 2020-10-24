@@ -50,7 +50,7 @@ model Event {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  tags        String[]
+  // tags        String[]
   name        String
   title       String
   description String
