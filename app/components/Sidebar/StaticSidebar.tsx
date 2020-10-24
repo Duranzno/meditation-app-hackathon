@@ -17,6 +17,7 @@ import Grid from '@material-ui/core/Grid';
 import NewEventSidebar from './NewEventSidebar';
 import TimeLineSidebar from './TimelineSidebar';
 import SimpleEventCards from '../Event/SimpleEventCards';
+import DetailedEventCard from '../Event/DetailedEventCard';
 
 
 interface Props {
@@ -168,9 +169,11 @@ export default function StaticSidebar() {
 
       </Drawer>
 
-      <main className={classes.content}>
+    {/* <main className={classes.content}>
         <div className={classes.toolbar} />
-      </main>
+        <DetailedEventCard/>
+
+      </main> */}
     </div>
   );
 }
