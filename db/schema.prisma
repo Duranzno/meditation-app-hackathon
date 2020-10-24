@@ -3,16 +3,18 @@
 
 // In case you don't want to set up docker and docker-compose:
 // 1. Comment this datasource
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
 
 // 2. Uncomment this datasource
-// datasource sqlite {
-//   provider = "sqlite"
-//  url      = "file:./db.sqlite" //use this on local
-// }
+datasource sqlite {
+  provider = "sqlite"
+  url      = "file:./db.sqlite"
+  //use this on local
+}
+
 generator client {
   provider = "prisma-client-js"
 }
