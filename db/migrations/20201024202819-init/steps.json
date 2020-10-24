@@ -568,9 +568,34 @@
     {
       "tag": "CreateField",
       "model": "Event",
-      "field": "link",
-      "type": "String",
+      "field": "ownerId",
+      "type": "Int",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "ownerId"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "ownerId"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "0"
     }
   ]
 }

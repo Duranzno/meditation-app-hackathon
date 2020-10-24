@@ -3,16 +3,18 @@
 
 // In case you don't want to set up docker and docker-compose:
 // 1. Comment this datasource
-datasource db {
-  provider = "postgresql"
-  url = "***"
-}
+// datasource db {
+//   provider = "postgresql"
+//   url = "***"
+// }
 
 // 2. Uncomment this datasource
-// datasource sqlite {
-//   provider = "sqlite"
-//  url = "***"
-// }
+datasource sqlite {
+  provider = "sqlite"
+  url = "***"
+  //use this on local
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -28,7 +30,6 @@ model User {
   hashedPassword String?
   role           String    @default("user")
   sessions       Session[]
-  events         Event[]
 }
 
 model Session {
@@ -49,7 +50,7 @@ model Event {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  tags        String[]
+  // tags        String[]
   name        String
   title       String
   description String
@@ -57,11 +58,5 @@ model Event {
   duration    Int // integer represents minutes
   online      Boolean  @default(true)
   location    String
-  // TODO: this is buggy --- these are required fields, but nullable because prisma's @default syntax doesn't support appropriate dynamism
-  // host        User?    @relation(fields: [hostId], references: [id])
-  // hostId      Int?
-  // TODO: implement ownership relation with user - a user should own a given event, be the only one
-  // allowed to edit it.
-  User        User?    @relation(fields: [userId], references: [id])
-  userId      Int?
+  ownerId     Int      @default(0)
 }
