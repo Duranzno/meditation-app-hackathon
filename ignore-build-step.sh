@@ -3,7 +3,7 @@
 # Retrieve branch name
 branch=$(git branch --show-current)
 
-if [ "$branch" == "master" ]; then
+if [ "$branch" == "deploy" ]; then
   # Proceed with build
     exit 1;
 else
