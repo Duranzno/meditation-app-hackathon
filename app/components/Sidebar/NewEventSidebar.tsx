@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import AddIcon from '@material-ui/icons/Add';
-import { Card, CardActions, CardContent, FormControl, TextField } from '@material-ui/core';
+import { Card, CardActions, CardContent, FormControl, Grid, TextField } from '@material-ui/core';
 
 
 interface Props {
@@ -39,6 +39,10 @@ const useStyles = makeStyles({
       },
       pos: {
         marginBottom: 12,
+      },
+      largeIcon: {
+        width: 60,
+        height: 60,
       },
   });
   
@@ -87,12 +91,14 @@ const NewEventSidebar: React.FC<Props> = (props) => {
   return (
     <div>
       {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <AddIcon onClick={toggleDrawer(anchor, true)}/>
+        <div >
+        <React.Fragment key={anchor} >
+          <AddIcon fontSize="large" onClick={toggleDrawer(anchor, true)}/>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {form(anchor)}
           </Drawer>
         </React.Fragment>
+        </div>
       ))}
     </div>
   );

@@ -163,7 +163,7 @@ export default function StaticSidebar() {
             </Grid>
 
 
-            {open ? <SimpleEventCards/> : null}
+            {open ? <SimpleEventCards handleDrawerOpen={handleDrawerOpen}/> : null}
 
         </Grid>
 

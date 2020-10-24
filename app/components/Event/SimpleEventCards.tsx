@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
 import NewEventSidebar from '../Sidebar/NewEventSidebar';
 import { ListItemIcon } from '@material-ui/core';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Box from '@material-ui/core/Box';
 
 interface Props {
 }
@@ -40,8 +42,12 @@ const SimpleEventCards: React.FC<Props> = (props: Props) => {
     
     return (
         <Grid item xs={8}>
-                    <h2>Your events</h2>
-
+                    <ListItem button onClick={props.handleDrawerOpen} style={{ backgroundColor: 'transparent' }}>
+                        <ListItemIcon > 
+                          <ArrowBackIosIcon/>                          
+                        </ListItemIcon>
+                    </ListItem>
+                    <h2>Your Events</h2>
                     {["Meditation 1.0", "Meditation 2.0", "Meditation 3.0"].map((text, index) => (
                     <ListItem button key={text}>
                         <Card className={classes.root}>
