@@ -3,7 +3,7 @@ import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createEvent from "app/events/mutations/createEvent"
 import EventForm from "app/events/components/EventForm"
-
+import { useCurrentUser } from 'app/hooks/useCurrentUser'
 // TODO: migrate from events/new page to modal/sidebar components integrated with events index page
 
 const defaults = {
@@ -19,6 +19,7 @@ const defaults = {
 const NewEventPage: BlitzPage = () => {
   const router = useRouter()
   const [createEventMutation] = useMutation(createEvent)
+  const user = useCurrentUser()
 
   return (
     <div>
@@ -37,13 +38,15 @@ const NewEventPage: BlitzPage = () => {
                 datetime: new Date(evt.datetime),
                 duration: evt.duration,
                 online: evt.online,
-                location: evt.location ? evt.location : ""
+                location: evt.location ? evt.location : "",
+                User: user,
+                userId: user?.id,
               }
             })
             alert("Success!" + JSON.stringify(event))
             router.push("/events/[eventId]", `/events/${event.id}`)
           } catch (error) {
-            alert("Error creating event " + JSON.stringify(error, null, 2))
+            alert("Error creating event " + JSON.stringify(error, null, 2) + JSON.stringify(user, null, 2))
           }
         }}
       />

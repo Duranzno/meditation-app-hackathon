@@ -4,7 +4,8 @@ import { Link, useRouter, useQuery, useMutation, useParam, BlitzPage } from "bli
 import getEvent from "app/events/queries/getEvent"
 import updateEvent from "app/events/mutations/updateEvent"
 import EventForm from "app/events/components/EventForm"
-
+import { useOwnedEvents } from "app/hooks/useEvents"
+import { useCurrentUser } from "app/hooks/useCurrentUser"
 // TODO: migrate EditEvent component to a modal form integrated with events index
 // TODO: make corrections from scaffolded pseudo-model to actual prisma schema
 
@@ -13,7 +14,11 @@ export const EditEvent = () => {
   const eventId = useParam("eventId", "string")
   const [event, { mutate }] = useQuery(getEvent, { where: { id: eventId } })
   const [updateEventMutation] = useMutation(updateEvent)
-
+  const user = useCurrentUser();
+  const isOwner = user ? user.id === event.userId : false
+  console.log(isOwner)
+  console.log(user)
+  console.log(event.userId)
   return (
     <div>
       <h1>Edit Event {event.id}</h1>
@@ -24,6 +29,7 @@ export const EditEvent = () => {
         onSubmit={async values => {
           try {
             const updated = await updateEventMutation({
+              // TODO: properly type this
               where: { id: event.id },
               data: {
                 name: values.name,
@@ -33,7 +39,7 @@ export const EditEvent = () => {
                 datetime: new Date(values.datetime),
                 duration: values.duration,
                 online: values.online,
-                location: values.location
+                location: values.location,
               },
             })
             await mutate(updated)

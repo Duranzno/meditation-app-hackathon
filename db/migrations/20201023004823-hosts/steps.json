@@ -1,0 +1,28 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Event",
+      "field": "host",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Event",
+      "field": "hostId",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "hostId"
+        },
+        "directive": "default"
+      }
+    }
+  ]
+}

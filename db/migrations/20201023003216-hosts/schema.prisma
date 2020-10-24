@@ -5,13 +5,13 @@
 // 1. Comment this datasource
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 // 2. Uncomment this datasource
 // datasource sqlite {
 //   provider = "sqlite"
-//  url      = "file:./db.sqlite" //use this on local
+//  url = "***"
 // }
 generator client {
   provider = "prisma-client-js"
@@ -57,6 +57,8 @@ model Event {
   duration    Int // integer represents minutes
   online      Boolean  @default(true)
   location    String
-  User        User?    @relation(fields: [userId], references: [id])
-  userId      Int?
+  host        User     @relation(fields: [hostId], references: [id])
+  hostId      Int      @default(0) // relation scalar field used in the @relation above
+  // TODO: implement ownership relation with user - a user should own a given event, be the only one
+  // allowed to edit it.
 }
