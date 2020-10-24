@@ -5,7 +5,6 @@ import getEvent from "app/events/queries/getEvent"
 import deleteEvent from "app/events/mutations/deleteEvent"
 
 // TODO: eliminate individual event page in favor of event modal on events index page
-// TODO: make corrections from scaffolded pseudo-model to actual prisma schema
 
 /**
  * This will be the individal page for each Event

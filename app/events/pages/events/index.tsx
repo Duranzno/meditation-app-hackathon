@@ -4,7 +4,7 @@ import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getEvents from "app/events/queries/getEvents"
 
 const ITEMS_PER_PAGE = 100
-
+// TODO: migrate EventsList from an HTML-based unordered list to cards inline with the figma design
 export const EventsList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
