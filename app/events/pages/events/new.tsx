@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createEvent from "app/events/mutations/createEvent"
@@ -22,40 +22,43 @@ const NewEventPage: BlitzPage = () => {
   const user = useCurrentUser()
 
   return (
-    <div>
-      <h1>Create New Event</h1>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        <h1>Create New Event</h1>
 
-      <EventForm
-        initialValues={defaults}
-        onSubmit={async evt => {
-          console.log(evt)
-          try {
-            const event = await createEventMutation({
-              data: {
-                name: evt.name,
-                title: evt.title,
-                description: evt.description,
-                datetime: new Date(evt.datetime),
-                duration: evt.duration,
-                online: evt.online,
-                location: evt.location ? evt.location : "",
-                User: user,
-                userId: user?.id,
-              }
-            })
-            alert("Success!" + JSON.stringify(event))
-            router.push("/events/[eventId]", `/events/${event.id}`)
-          } catch (error) {
-            alert("Error creating event " + JSON.stringify(error, null, 2) + JSON.stringify(user, null, 2))
-          }
-        }}
-      />
-      <p>
-        <Link href="/events">
-          <a>Events</a>
-        </Link>
-      </p>
-    </div>
+        <EventForm
+          initialValues={defaults}
+          onSubmit={async evt => {
+            console.log(evt)
+            try {
+              const event = await createEventMutation({
+                data: {
+                  name: evt.name,
+                  title: evt.title,
+                  description: evt.description,
+                  datetime: new Date(evt.datetime),
+                  duration: evt.duration,
+                  online: evt.online,
+                  location: evt.location ? evt.location : "",
+                  // User: user,
+                  // userId: user?.id,
+                  ownerId: user?.id,
+                }
+              })
+              alert("Success!" + JSON.stringify(event))
+              router.push("/events/[eventId]", `/events/${event.id}`)
+            } catch (error) {
+              alert("Error creating event " + JSON.stringify(error, null, 2) + JSON.stringify(user, null, 2))
+            }
+          }}
+        />
+        <p>
+          <Link href="/events">
+            <a>Events</a>
+          </Link>
+        </p>
+      </div>
+    </Suspense>
   )
 }
 // could we eliminate this getLayout function by wrapping root _app component in <Layout/> ?

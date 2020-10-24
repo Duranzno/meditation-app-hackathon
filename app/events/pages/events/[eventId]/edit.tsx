@@ -28,6 +28,7 @@ export const EditEvent = () => {
         initialValues={event}
         onSubmit={async values => {
           try {
+            console.log(user.id)
             const updated = await updateEventMutation({
               // TODO: properly type this
               where: { id: event.id },
@@ -40,6 +41,7 @@ export const EditEvent = () => {
                 duration: values.duration,
                 online: values.online,
                 location: values.location,
+                ownerId: user?.id,
               },
             })
             await mutate(updated)
