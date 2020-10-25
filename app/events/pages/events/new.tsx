@@ -19,7 +19,7 @@ const defaults = {
 const NewEventPage: BlitzPage = () => {
   const router = useRouter()
   const [createEventMutation] = useMutation(createEvent)
-  // const user = useCurrentUser()
+  const user = useCurrentUser()
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -29,8 +29,8 @@ const NewEventPage: BlitzPage = () => {
         <EventForm
           initialValues={defaults}
           onSubmit={async evt => {
-            console.log(evt)
             try {
+              // TODO: properly type this mutation...
               const event = await createEventMutation({
                 data: {
                   name: evt.name,
@@ -48,7 +48,7 @@ const NewEventPage: BlitzPage = () => {
               alert("Success!" + JSON.stringify(event))
               router.push("/events/[eventId]", `/events/${event.id}`)
             } catch (error) {
-              alert("Error creating event " + JSON.stringify(error, null, 2) + JSON.stringify(user, null, 2))
+              alert("Error creating event " + JSON.stringify(error, null, 2))
             }
           }}
         />

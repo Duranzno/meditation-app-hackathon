@@ -15,10 +15,8 @@ export const EditEvent = () => {
   const [event, { mutate }] = useQuery(getEvent, { where: { id: eventId } })
   const [updateEventMutation] = useMutation(updateEvent)
   const user = useCurrentUser();
-  const isOwner = user ? user.id === event.userId : false
-  console.log(isOwner)
-  console.log(user)
-  console.log(event.userId)
+  const isOwner = user ? user.id === event.ownerId : false
+  console.log(isOwner);
   return (
     <div>
       <h1>Edit Event {event.id}</h1>
@@ -28,13 +26,13 @@ export const EditEvent = () => {
         initialValues={event}
         onSubmit={async values => {
           try {
-            console.log(user.id)
+            // console.log(user.id)
             const updated = await updateEventMutation({
               // TODO: properly type this
               where: { id: event.id },
               data: {
                 name: values.name,
-                tags: values.tags,
+                // tags: values.tags,
                 title: values.title,
                 description: values.description,
                 datetime: new Date(values.datetime),
