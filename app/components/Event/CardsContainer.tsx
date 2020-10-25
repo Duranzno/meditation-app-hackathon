@@ -16,7 +16,7 @@ const CardsContainer: React.FC<Props> = (props) => {
       time: string;
     }) => {
       return (
-        <Grid item xs={3}>
+        <Grid item xs={3} key={card.title}>
           <DetailedEventCard card={card} />
         </Grid>
 

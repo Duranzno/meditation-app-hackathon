@@ -192,6 +192,13 @@
       "arity": "List"
     },
     {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "Event",
+      "type": "Event",
+      "arity": "List"
+    },
+    {
       "tag": "CreateModel",
       "model": "Session"
     },
@@ -396,6 +403,67 @@
     },
     {
       "tag": "CreateModel",
+      "model": "Category"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Category",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Category",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Category",
+      "field": "events",
+      "type": "Event",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
       "model": "Event"
     },
     {
@@ -568,9 +636,9 @@
     {
       "tag": "CreateField",
       "model": "Event",
-      "field": "ownerId",
-      "type": "Int",
-      "arity": "Required"
+      "field": "User",
+      "type": "User",
+      "arity": "Optional"
     },
     {
       "tag": "CreateDirective",
@@ -578,9 +646,9 @@
         "path": {
           "tag": "Field",
           "model": "Event",
-          "field": "ownerId"
+          "field": "User"
         },
-        "directive": "default"
+        "directive": "relation"
       }
     },
     {
@@ -590,12 +658,86 @@
         "path": {
           "tag": "Field",
           "model": "Event",
-          "field": "ownerId"
+          "field": "User"
         },
-        "directive": "default"
+        "directive": "relation"
       },
-      "argument": "",
-      "value": "0"
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "User"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Event",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Event",
+      "field": "Category",
+      "type": "Category",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "Category"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "Category"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[categoryId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "Category"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Event",
+      "field": "categoryId",
+      "type": "Int",
+      "arity": "Optional"
     }
   ]
 }

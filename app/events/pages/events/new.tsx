@@ -3,7 +3,7 @@ import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createEvent from "app/events/mutations/createEvent"
 import EventForm from "app/events/components/EventForm"
-import { useCurrentUser } from 'app/hooks/useCurrentUser'
+// import { useCurrentUser } from 'app/hooks/useCurrentUser'
 // TODO: migrate from events/new page to modal/sidebar components integrated with events index page
 
 const defaults = {
