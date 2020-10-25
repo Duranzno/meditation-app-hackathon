@@ -12,7 +12,7 @@ const CardsContainer: React.FC<Props> = (props) => {
     console.log(props.events)
     return props.events.map((event: {
       data: object;
-    }) => {
+    }, i) => {
       return (
         <Grid 
         item 
@@ -20,7 +20,7 @@ const CardsContainer: React.FC<Props> = (props) => {
         justify="center"
         direction="row"
         alignItems="flex-start" 
-        key={event.data.title}>
+        key={i}>
           <DetailedEventCard event={event.data} />
         </Grid>
 
