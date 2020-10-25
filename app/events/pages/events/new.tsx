@@ -19,7 +19,8 @@ const defaults = {
 const NewEventPage: BlitzPage = () => {
   const router = useRouter()
   const [createEventMutation] = useMutation(createEvent)
-  const user = useCurrentUser()
+  // TODO: this is the source of #3
+  // const user = useCurrentUser()
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -40,9 +41,6 @@ const NewEventPage: BlitzPage = () => {
                   duration: evt.duration,
                   online: evt.online,
                   location: evt.location ? evt.location : "",
-                  // User: user,
-                  // userId: user?.id,
-                  // ownerId: user?.id,
                 }
               })
               alert("Success!" + JSON.stringify(event))
