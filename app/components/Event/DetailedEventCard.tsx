@@ -52,7 +52,7 @@ const DetailedEventCard: React.FC<Props> = (props: Props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {console.log(props.event)}
+            {/* {console.log(props.event)} */}
             {props.event.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

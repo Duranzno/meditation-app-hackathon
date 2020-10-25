@@ -2,6 +2,7 @@ import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getEvents from "app/events/queries/getEvents"
+import EventCards from "app/events/components/EventCards"
 
 const ITEMS_PER_PAGE = 100
 // TODO: migrate EventsList from an HTML-based unordered list to cards inline with the figma design
@@ -19,17 +20,21 @@ export const EventsList = () => {
 
   return (
     <div>
-      <ul>
-        {/* Cards would go here since it is the index view of the cards */}
+      {/* Cards would go here since it is the index view of the cards */}
+      {console.log("hello")}
+      {/* this link can open a modal containing detailed view of event */}
+
+      {/* <ul>
+
+
         {events.map((event) => (
           <li key={event.id}>
             <Link href="/events/[eventId]" as={`/events/${event.id}`}>
-              {/* this link can open a modal containing detailed view of event */}
               <a>{event.name}</a>
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <button disabled={page === 0} onClick={goToPreviousPage}>
         Previous
@@ -52,7 +57,8 @@ const EventsPage: BlitzPage = () => {
       </p>
 
       <Suspense fallback={<div>Loading...</div>}>
-        <EventsList />
+      <EventCards/>
+        {/* <EventsList /> */}
       </Suspense>
     </div>
   )
