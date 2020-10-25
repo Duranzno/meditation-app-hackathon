@@ -13,11 +13,13 @@ const UserInfo = () => {
   const router = useRouter()
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  useEffect(() => {
-    if (!currentUser) {
-      router.push("/login")
-    }
-  }, [currentUser]) //FIXME:
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     console.log("HEY")
+  //     console.log(currentUser)
+  //     router.push("/login")
+  //   }
+  // }, [currentUser]) //FIXME:
   if (currentUser) {
     return (
       <>
@@ -37,7 +39,7 @@ const UserInfo = () => {
       </>
     )
   } else {
-    return null
+    return <div>Hye</div>
   }
 }
 

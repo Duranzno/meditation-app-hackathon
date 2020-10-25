@@ -3,11 +3,13 @@ import { Link, useMutation } from "blitz"
 import { Form, FORM_ERROR } from "app/components/Form"
 import login from "app/auth/mutations/login"
 import { LoginInput } from "app/auth/validations"
-import { Container, TextField, Typography, InputAdornment, Grid } from "@material-ui/core"
+import { Container, Typography, InputAdornment, Grid } from "@material-ui/core"
 import Chevron from "@material-ui/icons/ChevronRight"
 import Person from "@material-ui/icons/Person"
 import Lock from "@material-ui/icons/Lock"
+import { TextField } from 'mui-rff'
 import useStyles from './AuthForm.styles'
+import strings from 'app/constants/strings'
 type LoginFormProps = {
   onSuccess?: () => void
 }
@@ -32,7 +34,7 @@ export const LoginForm = (props: LoginFormProps) => {
   }
   return (
     <Container maxWidth="sm" className={classes.root}>
-      <Typography component="h2" variant="h2" className={classes.title}>Login</Typography>
+      <Typography component="h2" variant="h2" className={classes.title}>{strings.auth.loginTitle}</Typography>
 
       <Form
         submitText="Sign In"
@@ -55,8 +57,8 @@ export const LoginForm = (props: LoginFormProps) => {
             <TextField
               variant="outlined"
               name="email"
-              label="Email"
-              placeholder="Email"
+              label={strings.auth.signupEmail}
+              placeholder={strings.auth.signupEmail}
               required
               InputProps={{
                 startAdornment: <InputAdornment position="start">
@@ -71,8 +73,8 @@ export const LoginForm = (props: LoginFormProps) => {
             <TextField
               variant="outlined"
               name="password"
-              label="Password"
-              placeholder="Password"
+              label={strings.password}
+              placeholder={strings.password}
               type="password"
               fullWidth
               InputProps={{
@@ -87,9 +89,9 @@ export const LoginForm = (props: LoginFormProps) => {
 
       </Form>
 
+      <div>
 
-      <div style={{ marginTop: "1rem" }}>
-        Your are new? <Link href="/signup">Create new user</Link>
+        {strings.auth.loginGoSignup1} <Link href="/signup">{strings.auth.loginGoSignup2}</Link>
       </div>
 
     </Container >

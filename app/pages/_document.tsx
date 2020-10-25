@@ -12,12 +12,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <DocumentHead />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
         <body>
           <Main />
           <BlitzScript />
