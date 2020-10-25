@@ -2,35 +2,34 @@ import { BlitzPage } from 'blitz'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CardsContainer from 'app/components/Event/CardsContainer';
 import Layout from 'app/layouts/Layout';
+import faker from 'faker';
 
-
-let cards = [
-  {
-    title: "Awesome Event",
-    time: "2pm",
-    date: "11/03/2020"
-  },
-  {
-    title: "Another Event",
-    time: "10am",
-    date: "11/15/2020"
-  },
-  {
-    title: "Great Meditation Event",
-    time: "9am",
-    date: "11/15/2020"
-  },
-  {
-    title: "New Event",
-    time: "1pmm",
-    date: "11/15/2020"
-  },
-  {
-    title: "Medidate Today",
-    time: "12pm",
-    date: "11/15/2020"
+let events: Array<object> = []
+for (let i = 0; i < 10; i++) {
+  let event = {
+    data: {
+      name: `${faker.date.weekday()} Meditation`, 
+      title: `Peaceful Meditation`, 
+      description: faker.random.words(), 
+      datetime: faker.date.future(), 
+      duration: Math.floor(Math.random() * (9 - 3) + 3), 
+      online: Math.random() >= 0.5, 
+      location: faker.address.city(),
+      Category: {
+        connect: {
+          id: Math.floor(Math.random() * (5 - 1) + 1),
+        },
+      },
+      User: {
+        connect: {
+          id: Math.floor(Math.random() * (5 - 1) + 1),
+        },
+      },
+    },
   }
-]
+  events.push(event)
+  }
+
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
@@ -48,14 +47,15 @@ const useStyles = makeStyles((theme) => ({
 const TemporalEvent: BlitzPage = () => {
   const classes = useStyles()
   const renderCards = () => {
-    // let cards = getAllCardsFromDB();
+    // let events = getAllEventsFromDB();
     // iterate over cards to render
-    console.log(cards)
-    return <CardsContainer cards={cards} />
+    console.log(events)
+    return <CardsContainer events={events} />
   }
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
+      {console.log(events)}
       {renderCards()}
     </main>
   )
