@@ -38,6 +38,16 @@ const seed = async () => {
       },
     })
   }
+
+  for (let i = 0; i < 20; i++) {
+    await db.user.create({
+      data: {
+        name: faker.name.findName(),
+        email: faker.internet.email(),
+        hashedPassword: faker.internet.password()
+      },
+    })
+  }
   
   
 }
