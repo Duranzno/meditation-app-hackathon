@@ -24,7 +24,8 @@ const seed = async () => {
   const focused = await db.category.create({data: {name: "Focused"}})
   const movement = await db.category.create({data: {name: "Movement"}})
   const mantra = await db.category.create({data: {name: "Mantra"}})
-    
+  
+  const event =  await db.event.create({data: {name: `Meditation`, title: `editation`, description: 'Peaceful', datetime: new Date(), duration: 30, online: true, location: "LA",Category: {connect: {id: 1,},},},})
   for (let i = 0; i < 10; i++) {
     await db.event.create({
       data: {
@@ -64,4 +65,3 @@ const seed = async () => {
 
 export default seed;
 
-const event =  await db.event.create({data: {name: `Meditation`, title: `editation`, description: 'Peaceful', datetime: new Date(), duration: 30, online: true, location: "LA",Category: {connect: {id: 1,},},},})
