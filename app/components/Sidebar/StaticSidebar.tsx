@@ -35,11 +35,11 @@ const StaticSidebar: React.FC = ({ children }) => {
     setOpen(!open)
   }
   const navbar = [
-    { icon: <CopyrightIcon />, onClick: (e: any) => handleDrawerOpen() },
-    { icon: <HomeIcon fontSize="large"/>, href: "/events" }, 
-    { icon: <LocalOfferIcon fontSize="large"/>, href: "/local/" },
-    { icon: <RoomIcon fontSize="large"/>, href: "/events/" },
-    { icon: <VideocamOutlinedIcon fontSize="large"/>, href: "/" },
+    { name: "Copyright", icon: <CopyrightIcon />, onClick: (e: any) => handleDrawerOpen() },
+    { name: "Home", icon: <HomeIcon fontSize="large" />, href: "/events" },
+    { name: "LocalOffer", icon: <LocalOfferIcon fontSize="large" />, href: "/local/" },
+    { name: "Room", icon: <RoomIcon fontSize="large" />, href: "/events/" },
+    { name: "VideocamOutlined", icon: <VideocamOutlinedIcon fontSize="large" />, href: "/" },
   ]
   return (
     <div className={classes.root}>
@@ -61,17 +61,19 @@ const StaticSidebar: React.FC = ({ children }) => {
           <Grid item xs={3}>
             <List>
               {navbar
-                .map(({ onClick, href, icon: c }) => {
+                .map(({ onClick, href, icon: c, name }) => {
+                  let element: JSX.Element | null = null;
                   if (href) {
-                    return <Link href={href}>{c}</Link>
+                    element = <Link href={href} key={name}>{c}</Link>
                   } else if (onClick) {
-                    return <IconButton onClick={onClick}>{c}</IconButton>
+                    element = <IconButton onClick={onClick} key={name}>{c}</IconButton>
                   } else {
                     throw Error("StaticSidebar.tsx:Element neither button nor link")
                   }
+                  return { element, name }
                 })
-                .map((v) => (
-                  <StaticSidebarIcon>{v}</StaticSidebarIcon>
+                .map(({ element, name }, i) => (
+                  <StaticSidebarIcon key={name}>{element}</StaticSidebarIcon>
                 ))}
             </List>
           </Grid>
