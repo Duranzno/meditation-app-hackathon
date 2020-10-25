@@ -20,9 +20,11 @@ export const EventsList = () => {
   return (
     <div>
       <ul>
+        {/* Cards would go here since it is the index view of the cards */}
         {events.map((event) => (
           <li key={event.id}>
             <Link href="/events/[eventId]" as={`/events/${event.id}`}>
+              {/* this link can open a modal containing detailed view of event */}
               <a>{event.name}</a>
             </Link>
           </li>
@@ -43,6 +45,7 @@ const EventsPage: BlitzPage = () => {
   return (
     <div>
       <p>
+        {/* This button opens right sidebar */}
         <Link href="/events/new">
           <a>Create Event</a>
         </Link>

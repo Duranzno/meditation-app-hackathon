@@ -36,7 +36,7 @@ const StaticSidebar: React.FC = ({ children }) => {
   }
   const navbar = [
     { icon: <CopyrightIcon />, onClick: (e: any) => handleDrawerOpen() },
-    { icon: <HomeIcon fontSize="large"/>, href: "/" },
+    { icon: <HomeIcon fontSize="large"/>, href: "/event" }, // home button sends to events index. This route is outside convention. events index is /events and a single event /events/:id
     { icon: <LocalOfferIcon fontSize="large"/>, href: "/local/" },
     { icon: <RoomIcon fontSize="large"/>, href: "/events/" },
     { icon: <VideocamOutlinedIcon fontSize="large"/>, href: "/" },
