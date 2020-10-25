@@ -8,6 +8,6 @@ import db from "db"
 export const useOwnedEvents = () => {
   const session = useSession()
   console.log(session.userId);
-  const events = useQuery(getEvents, { where: { ownerId: session.userId } })
+  const events = useQuery(getEvents, { where: { userId: session.userId } })
   return events;
 }

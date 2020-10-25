@@ -30,7 +30,7 @@ model User {
   hashedPassword String?
   role           String    @default("user")
   sessions       Session[]
-  events         Event[]
+  Event          Event[]
 }
 
 model Session {
@@ -47,19 +47,25 @@ model Session {
   privateData        String?
 }
 
+model Category {
+  id      Int     @id @default(autoincrement())
+  name    String
+  Event   Event?  @relation(fields: [eventId], references: [id])
+  eventId String?
+}
+
 model Event {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  // tags        []
+  id          String     @id @default(uuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  categories  Category[]
   name        String
   title       String
   description String
   datetime    DateTime
   duration    Int // integer represents minutes
-  online      Boolean  @default(true)
+  online      Boolean    @default(true)
   location    String
-  ownerId     Int      @default(0)
-  User        User     @relation(fields: [userId], references: [id])
-  userId      Int      @default(0)
+  User        User?      @relation(fields: [userId], references: [id])
+  userId      Int?
 }

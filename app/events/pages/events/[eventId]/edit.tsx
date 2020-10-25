@@ -15,7 +15,7 @@ export const EditEvent = () => {
   const [event, { mutate }] = useQuery(getEvent, { where: { id: eventId } })
   const [updateEventMutation] = useMutation(updateEvent)
   const user = useCurrentUser();
-  const isOwner = user ? user.id === event.ownerId : false
+  const isOwner = user ? user.id === event.userId : false
   console.log(isOwner);
   return (
     <div>
@@ -39,7 +39,7 @@ export const EditEvent = () => {
                 duration: values.duration,
                 online: values.online,
                 location: values.location,
-                ownerId: user?.id,
+                // userId: user?.id, TODO: make this work
               },
             })
             await mutate(updated)
