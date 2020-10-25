@@ -8,6 +8,16 @@ import faker from "faker";
  * or https://github.com/Marak/Faker.js to easily generate
  * realistic data.
  */
+
+
+ /*
+ * Can't seed with faker but 
+ *
+ * `yarn blitz c` will enter the console and allow manual modification of db records
+ * 
+ * db is working 
+ */
+
 const seed = async () => {
   const mindfulness = await db.category.create({data: {name: "Mindfulness"}})
   const spiritual = await db.category.create({data: {name: "Spiritual"}})
