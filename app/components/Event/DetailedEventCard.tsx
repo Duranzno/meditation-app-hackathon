@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import faker from 'faker';
+import EventModal from './EventModal'
 
 interface Props {
     event: {
@@ -19,7 +20,8 @@ interface Props {
       duration: number;
       online: Boolean; 
       location: string;
-    }
+    };
+    id: number;
 }
 
 const useStyles = makeStyles({
@@ -40,11 +42,15 @@ const useStyles = makeStyles({
 
 const DetailedEventCard: React.FC<Props> = (props: Props) => {
     const classes = useStyles();
+    const [open, setOpen] = useState()
+    const handleClose =() => {
+      setOpen(false)
+    }
     return (
       <>
-          
+          <EventModal open={open} event={props.event} handleClose={handleClose}/>
         <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={() => setOpen(true)}>
         <CardMedia
           className={classes.media}
           image={faker.image.nature()}

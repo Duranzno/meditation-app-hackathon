@@ -96,6 +96,7 @@ let events: Array<object> = []
 for (let i = 0; i < 10; i++) {
   let event = {
     data: {
+      id: i+1,
       name: `${faker.date.weekday()} Meditation`, 
       title: `Peaceful Meditation`, 
       description: faker.random.words(), 
@@ -118,7 +119,7 @@ for (let i = 0; i < 10; i++) {
   events.push(event)
   }
 
-  let categories = [
+  let categories: Array<object>  = [
     {data: {name: "Mindfulness", id: 1}},
     {data: {name: "Spiritual", id: 2}},
     {data: {name: "Focused", id: 3}},
