@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,13 +7,21 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import faker from 'faker';
+import EventModal from './EventModal'
 
 interface Props {
-    card: {
-    title: string;
-    date: string;
-    time: string;
-    }
+    event: {
+      name: string; 
+      title: string; 
+      description: string; 
+      datetime: Date; 
+      duration: number;
+      online: Boolean; 
+      location: string;
+    };
+    id: number;
 }
 
 const useStyles = makeStyles({
@@ -34,34 +42,42 @@ const useStyles = makeStyles({
 
 const DetailedEventCard: React.FC<Props> = (props: Props) => {
     const classes = useStyles();
+    const [open, setOpen] = useState()
+    const handleClose =() => {
+      setOpen(false)
+    }
     return (
+      <>
+          <EventModal open={open} event={props.event} handleClose={handleClose}/>
         <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={() => setOpen(true)}>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={faker.image.nature()}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.card.title}
+            {/* {console.log(props.event)} */}
+            {props.event.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          {props.card.date}
+          {props.event.datetime.toString()}
           <br/>
-          {props.card.time}
+          {props.event.duration}0 mins
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          Add
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button>
       </CardActions>
     </Card>
+    </>
     )
 }
 
