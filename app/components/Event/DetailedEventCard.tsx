@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import faker from 'faker';
 import EventModal from './EventModal'
+import { boolean } from 'zod';
 
 interface Props {
     event: {
@@ -46,9 +47,14 @@ const DetailedEventCard: React.FC<Props> = (props: Props) => {
     const handleClose =() => {
       setOpen(false)
     }
+
+    const addEvent = () => {
+
+    }
+
     return (
       <>
-          <EventModal open={open} event={props.event} handleClose={handleClose}/>
+          <EventModal open={open} event={props.event} handleClose={handleClose} addModal={addEvent}/>
         <Card className={classes.root}>
       <CardActionArea onClick={() => setOpen(true)}>
         <CardMedia
@@ -69,10 +75,10 @@ const DetailedEventCard: React.FC<Props> = (props: Props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button onClick={() => addEvent()} size="small" color="primary">
           Add
         </Button>
-        <Button size="small" color="primary">
+        <Button onClick={() => setOpen(true)} size="small" color="primary">
           Learn More
         </Button>
       </CardActions>

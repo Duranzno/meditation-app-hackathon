@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
       position: 'absolute',
-      width: 400,
+      width: 700,
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
@@ -55,7 +55,7 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <img src={faker.image.nature()} alt="calming nature" width="300" height="200"/>
+      <img src={faker.image.nature()} alt="calming nature" width="500" height="200"/>
       <h2 id="simple-modal-title">{event.name}</h2>
       <p id="simple-modal-description">
         Description: {event.description}
