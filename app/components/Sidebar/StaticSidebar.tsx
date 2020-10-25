@@ -79,9 +79,11 @@ const StaticSidebar: React.FC = ({ children }) => {
         </Grid>
       </Drawer>
 
-      <main className={classes.content}>
+    {/* <main className={classes.content}>
         <div className={classes.toolbar} />
-      </main>
+        <DetailedEventCard/>
+
+      </main> */}
     </div>
   )
 }

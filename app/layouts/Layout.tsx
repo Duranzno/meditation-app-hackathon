@@ -23,3 +23,32 @@ const Layout: React.FC<LayoutProps> = ({ children, ...props }: LayoutProps) => {
 }
 
 export default Layout
+
+
+let cards = [
+  {
+    title: "Awesome Event",
+    time: "2pm",
+    date: "11/03/2020"
+  },
+  {
+    title: "Another Event",
+    time: "10am",
+    date: "11/15/2020"
+  },
+  {
+    title: "Great Meditation Event",
+    time: "9am",
+    date: "11/15/2020"
+  },
+  {
+    title: "New Event",
+    time: "1pmm",
+    date: "11/15/2020"
+  },
+  {
+    title: "Medidate Today",
+    time: "12pm",
+    date: "11/15/2020"
+  }
+]
