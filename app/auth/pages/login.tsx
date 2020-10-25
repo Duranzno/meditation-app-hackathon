@@ -1,18 +1,16 @@
 import React from "react"
 import { useRouter, BlitzPage } from "blitz"
-import Layout from "app/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
+import AuthLayout from "app/layouts/AuthLayout"
 
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <div>
-      <LoginForm onSuccess={() => router.push("/")} />
-    </div>
+    <LoginForm onSuccess={() => router.push("/")} />
   )
 }
 
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
+LoginPage.getLayout = (page) => <AuthLayout title="Login">{page}</AuthLayout>
 
 export default LoginPage

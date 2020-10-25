@@ -10,8 +10,8 @@ import deleteEvent from "app/events/mutations/deleteEvent"
 /**
  * This will be the individal page for each Event
  * It will show either:
- *  * The Jitsi Videochat for online events 
- *  * The Map Component with the event's direction if it is offline 
+ *  * The Jitsi Videochat for online events
+ *  * The Map Component with the event's direction if it is offline
  * DEVELOP:
  */
 export const Event = () => {

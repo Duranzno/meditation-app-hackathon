@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react"
 
-interface Props {
-
-}
+interface Props {}
 
 const Footer: React.FC<Props> = () => {
   return (
-
     <footer>
       <a
         href="https://blitzjs.com?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
@@ -16,7 +13,6 @@ const Footer: React.FC<Props> = () => {
         Powered by Blitz.js
       </a>
     </footer>
-
   )
 }
 

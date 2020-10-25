@@ -1,18 +1,12 @@
-import React from 'react'
+import React from "react"
 
-interface Props {
-
-}
+interface Props {}
 /**
  * This is the JitsiVideochat component
  * DEVELOP:
  */
 const JitsiVideochat: React.FC<Props> = (props) => {
-    return (
-        <div>
-            Videochat
-        </div>
-    )
+  return <div>Videochat</div>
 }
 
 export default JitsiVideochat
