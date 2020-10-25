@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "name": "Launch localhost",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "firefoxExecutable": "/opt/firefox_dev/firefox-bin",
+      "firefoxArgs": [
+        "--profile-path",
+        "/home/alejandro/.mozzilla/firefox/gb49n7yv.dev-edition-default"
+      ],
+      "url": "http://localhost:3000/",
+      "webRoot": "${workspaceFolder}",
+      "pathMappings": [
+        {
+          "url": "webpack://_n_e/app",
+          "path": "${workspaceFolder}/app"
+        }
+      ]
+    },
+    {
+      "name": "Attach",
+      "firefoxExecutable": "/opt/firefox_dev/firefox-bin",
+      "url": "http://localhost:3000/",
+      "type": "firefox",
+      "request": "attach",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

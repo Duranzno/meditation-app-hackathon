@@ -10,14 +10,14 @@ import EventForm from "app/events/components/EventForm"
 const URL = "localhost:3000/events/new"
 
 const defaults = {
-  "tags": ["meditation"],
-  "name": "My Meditation Session",
-  "title": "Focusing 8 Chakras",
-  "description": "Align your 8 chakras so you can enter the Avatar State at will.",
-  "datetime": "",
-  "duration": 30,
-  "online": true,
-  "link": "localhost:3000/events"
+  tags: ["meditation"],
+  name: "My Meditation Session",
+  title: "Focusing 8 Chakras",
+  description: "Align your 8 chakras so you can enter the Avatar State at will.",
+  datetime: "",
+  duration: 30,
+  online: true,
+  link: "localhost:3000/events",
 }
 
 const NewEventPage: BlitzPage = () => {
@@ -41,8 +41,8 @@ const NewEventPage: BlitzPage = () => {
                 duration: defaults.duration,
                 online: defaults.online,
                 location: "",
-                link: `${URL}`
-              }
+                link: `${URL}`,
+              },
             })
             alert("Success!" + JSON.stringify(event))
             router.push("/events/[eventId]", `/events/${event.id}`)

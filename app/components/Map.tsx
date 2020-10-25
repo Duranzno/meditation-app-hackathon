@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react"
 
-interface Props {
-
-}
+interface Props {}
 
 /**
  * This is the HereMap component to be used when:
@@ -11,11 +9,7 @@ interface Props {
  * DEVELOP:
  */
 const Map = (props: Props) => {
-    return (
-        <div>
-            HEREMAPS
-        </div>
-    )
+  return <div>HEREMAPS</div>
 }
 
 export default Map

@@ -1,14 +1,15 @@
+import { Button, ButtonProps } from "@material-ui/core"
 import React, { ReactNode, PropsWithoutRef } from "react"
 import { Form as FinalForm, FormProps as FinalFormProps } from "react-final-form"
 import * as z from "zod"
 export { FORM_ERROR } from "final-form"
-
 type FormProps<S extends z.ZodType<any, any>> = {
   /** All your form fields */
   children: ReactNode
   /** Text to display in the submit button */
   submitText: string
   schema?: S
+  buttonProps?: ButtonProps,
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]
   initialValues?: FinalFormProps<z.infer<S>>["initialValues"]
 } & Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit">
@@ -19,6 +20,7 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
+  buttonProps,
   ...props
 }: FormProps<S>) {
   return (
@@ -44,9 +46,9 @@ export function Form<S extends z.ZodType<any, any>>({
             </div>
           )}
 
-          <button type="submit" disabled={submitting}>
+          <Button {...buttonProps} type="submit" disabled={submitting}>
             {submitText}
-          </button>
+          </Button>
 
           <style global jsx>{`
             .form > * + * {
@@ -58,5 +60,4 @@ export function Form<S extends z.ZodType<any, any>>({
     />
   )
 }
-
 export default Form
