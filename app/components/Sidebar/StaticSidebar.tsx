@@ -36,10 +36,10 @@ const StaticSidebar: React.FC = ({ children }) => {
   }
   const navbar = [
     { icon: <CopyrightIcon />, onClick: (e: any) => handleDrawerOpen() },
-    { icon: <HomeIcon />, href: "/" },
-    { icon: <LocalOfferIcon />, href: "/local/" },
-    { icon: <RoomIcon />, href: "/events/" },
-    { icon: <VideocamOutlinedIcon />, href: "/" },
+    { icon: <HomeIcon fontSize="large"/>, href: "/events" }, 
+    { icon: <LocalOfferIcon fontSize="large"/>, href: "/local/" },
+    { icon: <RoomIcon fontSize="large"/>, href: "/events/" },
+    { icon: <VideocamOutlinedIcon fontSize="large"/>, href: "/" },
   ]
   return (
     <div className={classes.root}>
@@ -79,11 +79,6 @@ const StaticSidebar: React.FC = ({ children }) => {
         </Grid>
       </Drawer>
 
-      {/* <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <DetailedEventCard/>
-
-      </main> */}
     </div>
   )
 }
