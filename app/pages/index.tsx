@@ -10,16 +10,9 @@ import { Router } from "blitz"
  */
 
 const UserInfo = () => {
-  const router = useRouter()
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  // useEffect(() => {
-  //   if (!currentUser) {
-  //     console.log("HEY")
-  //     console.log(currentUser)
-  //     router.push("/login")
-  //   }
-  // }, [currentUser]) //FIXME:
+
   if (currentUser) {
     return (
       <>
@@ -39,7 +32,7 @@ const UserInfo = () => {
       </>
     )
   } else {
-    return <div>Hye</div>
+    return null
   }
 }
 
