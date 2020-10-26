@@ -4,6 +4,7 @@
   "scripts": {
     "start-blitz": "blitz db migrate && blitz start",
     "start": "yarn start-blitz",
+    "seed": "rimraf db/db.sqlite db/migrations && yarn blitz db seed",
     "start:docker": "docker-compose up -d && yarn start-blitz",
     "studio": "blitz db studio",
     "build": "NODE_ENV=production blitz db migrate && blitz build",
@@ -93,6 +94,7 @@
     "pretty-quick": "3.1.0",
     "react-is": "^17.0.1",
     "react-test-renderer": "16.14.0",
+    "rimraf": "3.0.2",
     "ts-jest": "26.4.3",
     "typescript": "4.0.3"
   },
