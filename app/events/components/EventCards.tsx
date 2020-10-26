@@ -4,6 +4,8 @@ import faker from 'faker';
 import DetailedEventCard from '../../components/Event/DetailedEventCard'
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
+import { useQuery } from 'blitz';
+import getEvents from '../queries/getEvents';
 
 
 
@@ -26,16 +28,17 @@ const useStyles = makeStyles((theme) => ({
 
 const EventCardsContainer: React.FC<Props> = () => {
   const classes = useStyles()
+
   const [categoryId, setCategoryId] = useState(0)
 
+  const [events] = useQuery(getEvents, {orderBy: {datetime: 'asc'}})
+
   const renderCards = () => {
-    let filteredEvents;
 
-    categoryId ?  filteredEvents = events.filter(event => event.data.Category.connect.id === parseInt(categoryId)) : filteredEvents = events
+    let filteredEvents = [];
+    categoryId ?  filteredEvents = mockEvents.filter(event => event.data.Category.connect.id === parseInt(categoryId)) : filteredEvents = mockEvents
 
-    return (filteredEvents.map((event: {
-      data: object;
-    }, i) => {
+    return (events.events.map((event: object, i) => {
       return (
         <Grid 
         item 
@@ -44,9 +47,9 @@ const EventCardsContainer: React.FC<Props> = () => {
         direction="row"
         alignItems="flex-start" 
         key={i}>
-
           
-          <DetailedEventCard event={event.data} />
+          
+          <DetailedEventCard event={event} />
         </Grid>
       )
     }))
@@ -68,6 +71,7 @@ const EventCardsContainer: React.FC<Props> = () => {
 
   return (
     <main className={classes.content}>
+      {console.log(events)}
       <div className={classes.toolbar} />
         <div style={{ width: "1100px"}}>
           <Button onClick={() => setCategoryId(0)}>All</Button>
@@ -92,7 +96,7 @@ const EventCardsContainer: React.FC<Props> = () => {
 export default EventCardsContainer
 
 
-let events: Array<object> = []
+let mockEvents: Array<object> = []
 for (let i = 0; i < 10; i++) {
   let event = {
     data: {
@@ -116,7 +120,7 @@ for (let i = 0; i < 10; i++) {
       },
     },
   }
-  events.push(event)
+  mockEvents.push(event)
   }
 
   let categories: Array<object>  = [
