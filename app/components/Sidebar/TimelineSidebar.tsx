@@ -16,13 +16,20 @@ interface Props {
 const TimelineSidebar: React.FC<Props> = ({ events, openNewEvent }) => {
   const currentUser = useCurrentUser() 
   const joinedEvents = currentUser?.Event
+  joinedEvents?.sort((a,b)=> a.datetime - b.datetime)
+  
   return (
     <Grid item xs={8}>
       <h2>Your events</h2>
+
       {currentUser ? 
-      joinedEvents.map((event) => (
-        <TimelineEventCard title={event.name} key={event.id} />
-      )) :
+      joinedEvents.map((event) => {
+        const days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat'];
+        const months = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+        const date = ` ${days[event.datetime.getDay()]} - ${months[event.datetime.getMonth()]} ${event.datetime.getDate()} @ ${event.datetime.getHours()}:00`
+        const title = event.title
+        return <TimelineEventCard title={title} date={date} key={event.id} />
+      }) :
       "Loading"
       }
       <Fab color="primary" aria-label="add" onClick={() => openNewEvent()}>

@@ -20,17 +20,17 @@ interface Props {
   text: string
 }
 
-const TimelineEventCard: React.FC<Props> = ({ title }) => {
+const TimelineEventCard: React.FC<Props> = ({ title, date }) => {
   const classes = useStyles()
   return (
     <ListItem button key={title}>
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Event of the Day
+          {title}
           </Typography>
           <Typography variant="body2" component="p">
-            {title}
+            {date}
           </Typography>
         </CardContent>
         <CardActions>
