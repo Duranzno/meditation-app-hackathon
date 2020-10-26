@@ -25,44 +25,40 @@ import faker from "faker";
 */
 
 const seed = async () => {
-  const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra"]
+  const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra", "Zen", "Kundalini"]
+
   const categories = await Promise.all(categoryNames.map((name) => db.category.create({ data: { name } })))
+
+  for (let i = 0; i < 20; i++) {
+    await db.user.create({
+      data: {
+        name: faker.name.findName(),
+        email: faker.internet.email(),
+        hashedPassword: faker.internet.password()
+      },
+    })
+  }
+
   for (let i = 0; i < 10; i++) {
-    const categoryId = categories[faker.random.number({ min: 0, max: categories.length })].id
-    console.log(categoryId)
+    const date = faker.date.future()
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     await db.event.create({
       data: {
-        name: `${faker.date.weekday()} Meditation`,
-        title: `Peaceful Meditation`,
-        description: faker.random.words(),
-        datetime: faker.date.future(),
-        duration: Math.floor(Math.random() * (90 - 30) + 30),
+        name: `${days[date.getDay()]}'s Meditation`,
+        title: `Satsang Meditation`,
+        description: `Session from the city of ${faker.address.city()}`,
+        datetime: date,
+        duration: Math.floor(Math.random() * (9 - 3) + 3),
         online: Math.random() >= 0.5,
         location: faker.address.city(),
         Category: {
           connect: {
-            id: Math.floor(Math.random() * (5 - 1) + 1),
-          },
-        },
-        User: {
-          connect: {
-            id: Math.floor(Math.random() * (5 - 1) + 1),
+            id: Math.floor(Math.random() * (7 - 1) + 1),
           },
         },
       },
     })
   }
-
-  // for (let i = 0; i < 20; i++) {
-  //   await db.user.create({
-  //     data: {
-  //       name: faker.name.findName(),
-  //       email: faker.internet.email(),
-  //       hashedPassword: faker.internet.password()
-  //     },
-  //   })
-  // }
-
 
 }
 
