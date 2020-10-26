@@ -1,6 +1,8 @@
-import React from "react"
+import React, { Suspense } from "react"
 import Drawer from "@material-ui/core/Drawer"
-import NewEventForm from "./NewEventForm"
+import EventForm from '../../events/components/EventForm'
+import createEvent from "app/events/mutations/createEvent"
+import { useMutation } from 'blitz';
 
 /**
  * This is the Sidebar that will show:
@@ -13,12 +15,29 @@ interface Props {
   open: boolean
   onClose: Function
 }
+
+
+
+
 const NewEventSidebar: React.FC<Props> = ({ open, onClose }) => {
+
+    const newEventValues = {
+      name: 'Session Name', 
+      title: 'Session Title', 
+      description: 'Description', 
+      datetime: new Date(),
+      duration: '30',
+      online: true, 
+      location: 'LA',
+      categoryId: 10
+    }
   return (
     <div>
+      <Suspense fallback={<div>Loading...</div>}>
       <Drawer anchor="right" open={open} onClose={() => onClose()}>
-        <NewEventForm />
+        <EventForm newEventValues={newEventValues}/>
       </Drawer>
+      </Suspense>
     </div>
   )
 }
