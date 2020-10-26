@@ -11,11 +11,7 @@ import faker from "faker";
 
 
 /*
-* Can't seed with faker but 
- * Can't seed with faker but 
-* Can't seed with faker but 
 *
-* `yarn blitz c` will enter the console and allow manual modification of db records
 * 
  * 
 * 
@@ -23,6 +19,21 @@ import faker from "faker";
  * db is working 
 * db is working 
 */
+
+
+// to see data in web app run in the terminal:
+//  `yarn blitz db seed`
+
+// if seed is taking too long press ctrl + c  it should get unstuck and finish seeding
+
+// to reset db:
+// delete db/migrations folder
+// delete db.sqlite
+// run in the terminal:
+//  `yarn blitz db seed`
+
+//  `yarn blitz c` will enter the console and allow manual modification of db records
+
 
 const seed = async () => {
   const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra", "Zen", "Kundalini"]
