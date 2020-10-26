@@ -126,3 +126,9 @@ for (let i = 0; i < 10; i++) {
     {data: {name: "Movement", id: 4}},
     {data: {name: "Mantra", id: 5}}
   ]
+
+  const user ={ data:  {
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    hashedPassword: faker.internet.password()
+  }}

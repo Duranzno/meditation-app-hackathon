@@ -10,7 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import faker from 'faker';
 import EventModal from './EventModal'
-import { boolean } from 'zod';
+
+import { useCurrentUser } from "app/hooks/useCurrentUser"
+import { useMutation, useQuery } from 'blitz';
+import updateUser from "app/users/mutations/updateUser"
+
 
 interface Props {
     event: {
@@ -44,17 +48,20 @@ const useStyles = makeStyles({
 const DetailedEventCard: React.FC<Props> = (props: Props) => {
     const classes = useStyles();
     const [open, setOpen] = useState()
+    const [updateUserMutation] = useMutation(updateUser)
+    const currentUser = useCurrentUser()
+
     const handleClose =() => {
       setOpen(false)
     }
 
-    const addEvent = () => {
-
-    }
+    const event = props.event
+    let id = currentUser ? currentUser.id : null
+    
 
     return (
       <>
-          <EventModal open={open} event={props.event} handleClose={handleClose} addModal={addEvent}/>
+          <EventModal open={open} event={props.event} handleClose={handleClose} />
         <Card className={classes.root}>
       <CardActionArea onClick={() => setOpen(true)}>
         <CardMedia
@@ -75,7 +82,36 @@ const DetailedEventCard: React.FC<Props> = (props: Props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={() => addEvent()} size="small" color="primary">
+        {/* {console.log(id)} */}
+        <Button         
+        onClick={async () => {
+          try {
+            const updated = await updateUserMutation({
+              where: { id: id },
+              data: { 
+                Event: {
+                  create: [
+                    {
+                      name: event.name, 
+                      title: event.title, 
+                      description: event.description, 
+                      datetime: event.datetime, 
+                      duration: event.duration, 
+                      online: event.online, 
+                      location: event.location
+                    }
+                  ],
+                },
+              },
+            })
+          } catch (error) {
+            console.log(error)
+            alert("Error creating user " + JSON.stringify(error, null, 2))
+          }
+        }} 
+        size="small" 
+        color="primary"
+        >
           Add
         </Button>
         <Button onClick={() => setOpen(true)} size="small" color="primary">
