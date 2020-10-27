@@ -49,9 +49,15 @@ const seed = async () => {
   })
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   for (let i = 0; i < categories.length; i++) {
-    const id = categories[i].id;
-
+    const categoryId = categories[i].id;
     const date = faker.date.future()
+    const address = faker.address
+    const location = await db.location.create({
+      data: {
+        lat: Number(address.latitude()),
+        lng: Number(address.longitude())
+      }
+    })
     await db.event.create(
       {
         data: {
@@ -61,10 +67,14 @@ const seed = async () => {
           datetime: date,
           duration: Math.floor(Math.random() * (9 - 3) + 3),
           online: faker.random.boolean(),
-          location: faker.address.city(),
+          location: {
+            connect: {
+              id: location.id
+            }
+          },
           Category: {
             connect: {
-              id,
+              id: categoryId,
             },
           },
         },
