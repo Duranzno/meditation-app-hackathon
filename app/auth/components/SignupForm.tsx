@@ -6,7 +6,7 @@ import { Form, FORM_ERROR } from "app/components/Form"
 import signup from "app/auth/mutations/signup"
 import { SignupInput } from "app/auth/validations"
 import useStyles from './AuthForm.styles'
-import strings from "app/constants/strings"
+import strings from "app/constants"
 // import ImageUploader from "app/components/ImageUploader"
 
 export interface SignupFormProps {

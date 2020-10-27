@@ -1,6 +1,6 @@
+import { InputLabel } from "@material-ui/core"
 import { uploadFile } from "integrations/cloudinary"
 import React, { useCallback } from "react"
-import Form from "react-bootstrap/Form"
 import { useDropzone } from "react-dropzone"
 interface Props {
   label?: string
@@ -16,7 +16,7 @@ const ImageUploader: React.FC<Props> = ({ label }) => {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <div className="dropzone-container">
-        <Form.Label className="dropzone-label">{label}</Form.Label>
+        <InputLabel className="dropzone-label">{label}</InputLabel>
       </div>
     </div>
   )

@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { propTypes } from 'react-bootstrap/esm/Image';
 import faker from 'faker';
 
 
@@ -10,8 +9,8 @@ function rand() {
 }
 
 function getModalStyle() {
-  const top = 50 ;
-  const left = 50 ;
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -35,12 +34,12 @@ const useStyles = makeStyles((theme: Theme) =>
       background: 'lightblue',
       width: '50%',
       height: '50%',
-    
+
       top: '50%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-    
+
       transform: 'translate(-50%, -50%)',
     }
   }),
@@ -55,7 +54,7 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <img src={faker.image.nature()} alt="calming nature" width="300" height="200"/>
+      <img src={faker.image.nature()} alt="calming nature" width="300" height="200" />
       <h2 id="simple-modal-title">{event.name}</h2>
       <p id="simple-modal-description">
         Description: {event.description}

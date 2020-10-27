@@ -1,34 +1,38 @@
 import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import { Link, useRouter, useMutation, BlitzPage } from "blitz"
+import {
+  Link,
+  useMutation,
+  BlitzPage,
+  useRouter
+} from "blitz"
 import createEvent from "app/events/mutations/createEvent"
+
 import EventForm from "app/events/components/EventForm"
-// import { useCurrentUser } from 'app/hooks/useCurrentUser'
+import { useCurrentUser } from 'app/hooks/useCurrentUser'
 // TODO: migrate from events/new page to modal/sidebar components integrated with events index page
 
-const defaults = {
-  "tags": ["meditation"],
-  "name": "My Meditation Session",
-  "title": "Focusing 8 Chakras",
-  "description": "Align your 8 chakras so you can enter the Avatar State at will.",
-  "datetime": "",
-  "duration": 30,
-  "online": true,
-}
+// const defaults = {
+//   "tags": ["meditation"],
+//   "name": "My Meditation Session",
+//   "title": "Focusing 8 Chakras",
+//   "description": "Align your 8 chakras so you can enter the Avatar State at will.",
+//   "datetime": "",
+//   "duration": 30,
+//   "online": true,
+// }
 
 const NewEventPage: BlitzPage = () => {
   const router = useRouter()
   const [createEventMutation] = useMutation(createEvent)
   // TODO: this is the source of #3
-  // const user = useCurrentUser()
+  const user = useCurrentUser()
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div>
         <h1>Create New Event</h1>
-
         <EventForm
-          initialValues={defaults}
           onSubmit={async evt => {
             try {
               // TODO: properly type this mutation...
@@ -37,10 +41,10 @@ const NewEventPage: BlitzPage = () => {
                   name: evt.name,
                   title: evt.title,
                   description: evt.description,
-                  datetime: new Date(evt.datetime),
+                  datetime: datetime,
                   duration: evt.duration,
                   online: evt.online,
-                  location: evt.location ? evt.location : "",
+                  location: evt.location ? evt.location : undefined,
                 }
               })
               alert("Success!" + JSON.stringify(event))
@@ -56,7 +60,7 @@ const NewEventPage: BlitzPage = () => {
           </Link>
         </p>
       </div>
-    </Suspense>
+    </Suspense >
   )
 }
 // could we eliminate this getLayout function by wrapping root _app component in <Layout/> ?

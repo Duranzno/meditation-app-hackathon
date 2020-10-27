@@ -9,7 +9,7 @@ import Person from "@material-ui/icons/Person"
 import Lock from "@material-ui/icons/Lock"
 import { TextField } from 'mui-rff'
 import useStyles from './AuthForm.styles'
-import strings from 'app/constants/strings'
+import strings from 'app/constants'
 type LoginFormProps = {
   onSuccess?: () => void
 }
