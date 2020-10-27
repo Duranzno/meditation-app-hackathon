@@ -32,9 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children, ...props }: LayoutProps) => {
 
   const classes = useStyles()
 
-  const [events] = useQuery(getEvents, {orderBy: {datetime: 'asc'}})
-  const [categories] = useQuery(getCategories, {orderBy: {id: 'asc'}})
-  debugger
+
   return (
 
     <BaseLayout {...props}>
