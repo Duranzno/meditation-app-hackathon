@@ -2,7 +2,7 @@ import { sendMail } from './send-grid';
 jest.setTimeout(10000)
 test('Send Mail', async () => {
     const emailData = {
-        mail: "aledurax@gmail.com",
+        mails: ["aledurax@gmail.com"],
         message: "paragraph sdasd",
     }
     // try {

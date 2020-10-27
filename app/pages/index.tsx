@@ -1,9 +1,9 @@
-import { BlitzPage, useMutation, useRouter } from "blitz"
+import { BlitzPage, useMutation } from "blitz"
 import Layout from "app/layouts/Layout"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import { Suspense, useEffect } from "react"
-import { Router } from "blitz"
+import { getAntiCSRFToken } from "blitz"
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -37,6 +37,15 @@ const UserInfo = () => {
 }
 
 const Home: BlitzPage = () => {
+  useEffect(() => {
+    const antiCSRFToken = getAntiCSRFToken()
+    fetch("/api/mail", {
+      credentials: "include",
+      headers: {
+        "anti-csrf": antiCSRFToken,
+      },
+    }).then((response) => response.json()).then(console.log)
+  }, [])
   return (
     <main>
       <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>

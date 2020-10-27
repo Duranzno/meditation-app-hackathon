@@ -1,6 +1,7 @@
 import db from "./index"
 import faker from "faker";
 import { Category } from "@material-ui/icons";
+import { hashPassword } from "app/auth/auth-utils";
 
 /*
  * This seed function is executed when you run `blitz db seed`.
@@ -47,10 +48,19 @@ const seed = async () => {
       hashedPassword: faker.internet.password()
     },
   })
+  const adminAccount = 'admin@admin.com'
+  const admin = await db.user.create({
+    data: {
+      name: adminAccount,
+      email: adminAccount,
+      hashedPassword: await hashPassword(adminAccount)
+    },
+  })
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   for (let i = 0; i < categories.length; i++) {
     const categoryId = categories[i].id;
-    const date = faker.date.future()
+    const date = faker.date.future(1, new Date())
+
     const address = faker.address
     const location = await db.location.create({
       data: {
@@ -67,6 +77,9 @@ const seed = async () => {
           datetime: date,
           duration: Math.floor(Math.random() * (9 - 3) + 3),
           online: faker.random.boolean(),
+          User: {
+            connect: { id: admin.id }
+          },
           location: {
             connect: {
               id: location.id

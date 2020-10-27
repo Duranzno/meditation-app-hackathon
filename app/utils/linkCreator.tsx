@@ -1,0 +1,2 @@
+export const linkCreator = (room: string): string => `http://${'localhost:3000'}/events/${room}`
+export const geoplaceCreator = (lat?: number, lng?: number) => lat && lng ? `https://www.google.com/maps?q=${lat},${lng}` : `Some place`
