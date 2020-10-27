@@ -1,9 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles"
-const drawerWidth = 300
+const drawerWidth = 500
 
 export const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+  },
+  logo: {
+    borderRadius: '100%'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -25,6 +28,21 @@ export const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: "none",
+  },
+  shameFlex: {
+    flex: 1,
+    display: 'flex',
+    maxHeight: '100%'
+  },
+  list: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyItems: "center",
+    justifyContent: "space-between",
+  },
+  listItem: {
+    background: "transparent"
   },
   drawer: {
     width: drawerWidth,

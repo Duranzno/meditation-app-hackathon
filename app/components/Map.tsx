@@ -24,9 +24,11 @@ interface Event {
 }
 
 interface Props {
-  events?: Event[]
+  events?: Event[],
+  onTouchEvent?: Function,
+  addMarker?: Function,
 }
-const HereMap: React.FC<Props> = ({ events }) => {
+const HereMap: React.FC<Props> = ({ events, addMarker, onTouchEvent }) => {
   const {
     NEXT_PUBLIC_HERE_MAPS_API_KEY: apiKey
   } = process.env;
@@ -37,7 +39,7 @@ const HereMap: React.FC<Props> = ({ events }) => {
   }, [lng, lat, setCenter])
 
   const classes = useStyles()
-  const onInteract = (e) => { console.log(e); };
+  const onInteract = (e) => { onTouchEvent(e) };
   return (
     <Grid className={classes.root} container display="column" justify="center" alignItems="center">
       <div className={classes.map} >
@@ -46,6 +48,7 @@ const HereMap: React.FC<Props> = ({ events }) => {
           zoom={12}
           hidpi
           interactive
+          onPointerDown={(v) => console.log(v)}
           mapContainerId="hereMapId"
           apikey={apiKey}
         >

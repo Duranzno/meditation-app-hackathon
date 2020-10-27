@@ -1,41 +1,59 @@
 import React from "react"
 import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
 import CardContent from "@material-ui/core/CardContent"
-import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import { ListItem, makeStyles } from "@material-ui/core"
+import { CalendarTodayOutlined, RoomOutlined } from "@material-ui/icons"
 const useStyles = makeStyles({
   root: {
-    minWidth: 170,
+    flex: 1,
+    backgroundColor: "#F4F5F7",
+    borderRadius: "16px",
   },
   title: {
     fontSize: 14,
+    fontStyle: "normal",
+    fontWeight: 800,
   },
   pos: {
     marginBottom: 12,
   },
+  textContainer: {
+    display: 'flex',
+    flexDirection: "row",
+    justifyItems: "space-between"
+  },
+  data: {
+    paddingLeft: 6
+  }
 })
 interface Props {
-  text: string
+  text: string,
+  onClick: Function
 }
 
-const TimelineEventCard: React.FC<Props> = ({ text }) => {
+const TimelineEventCard: React.FC<Props> = ({ text, onClick }) => {
   const classes = useStyles()
   return (
     <ListItem button key={text}>
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={() => onClick()}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Event of the Day
-          </Typography>
-          <Typography variant="body2" component="p">
             {text}
           </Typography>
+          <div className={classes.textContainer}>
+            <CalendarTodayOutlined />
+            <Typography className={classes.data} variant="body2" component="p">
+              {text}``
+            </Typography>
+          </div>
+          <div className={classes.textContainer}>
+            <RoomOutlined />
+            <Typography className={classes.data} variant="body2" component="p">
+              {text}
+            </Typography>
+          </div>
         </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </Card>
     </ListItem>
   )

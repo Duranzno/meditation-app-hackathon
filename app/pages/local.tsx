@@ -9,7 +9,7 @@ import HereMap from 'app/components/Map'
 const Local: BlitzPage = () => {
   return (
     <div>
-      <HereMap />
+      <HereMap events={[]} addMarker={console.log} />
     </div>
   )
 }

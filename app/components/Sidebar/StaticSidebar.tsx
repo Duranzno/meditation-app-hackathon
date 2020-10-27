@@ -5,15 +5,14 @@ import List from "@material-ui/core/List"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
-import CopyrightIcon from "@material-ui/icons/Copyright"
 import HomeIcon from "@material-ui/icons/Home"
 import LocalOfferIcon from "@material-ui/icons/LocalOffer"
 import RoomIcon from "@material-ui/icons/Room"
-import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined"
+import VideocamIcon from "@material-ui/icons/Videocam"
 import Grid from "@material-ui/core/Grid"
 import { useStyles } from "./StaticSidebar.styles"
 import { Link } from "blitz"
-import { IconButton } from "@material-ui/core"
+import { Avatar, ButtonBase } from "@material-ui/core"
 
 /**
  * This is the Sidebar that will show:
@@ -21,12 +20,19 @@ import { IconButton } from "@material-ui/core"
  *  * A button to create a new event and open the NewEventSidebar
  */
 
-const StaticSidebarIcon: React.FC = ({ children }) => (
-  <ListItem style={{ backgroundColor: "transparent" }}>
+const StaticSidebarIcon: React.FC<{ className: string }> = ({ children, className }) => (
+  <ListItem className={className}>
     <ListItemIcon>{children}</ListItemIcon>
   </ListItem>
 )
-
+const Logo: React.FC<{ onClick: Function }> = ({ onClick }) => {
+  const classes = useStyles()
+  return (
+    <ButtonBase className={classes.logo} onClick={() => onClick()} >
+      <Avatar src="/logo-transparent.png" />
+    </ButtonBase>
+  )
+}
 const StaticSidebar: React.FC = ({ children }) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
@@ -35,11 +41,10 @@ const StaticSidebar: React.FC = ({ children }) => {
     setOpen(!open)
   }
   const navbar = [
-    { name: "Copyright", icon: <CopyrightIcon />, onClick: (e: any) => handleDrawerOpen() },
     { name: "Home", icon: <HomeIcon fontSize="large" />, href: "/events" },
-    { name: "LocalOffer", icon: <LocalOfferIcon fontSize="large" />, href: "/local/" },
-    { name: "Room", icon: <RoomIcon fontSize="large" />, href: "/events/" },
-    { name: "VideocamOutlined", icon: <VideocamOutlinedIcon fontSize="large" />, href: "/" },
+    { name: "Categories", icon: <LocalOfferIcon fontSize="large" />, href: "/categories" },
+    { name: "Local Events", icon: <RoomIcon fontSize="large" />, href: "/local" },
+    { name: "Room", icon: <VideocamIcon fontSize="large" />, href: "/" },
   ]
   return (
     <div className={classes.root}>
@@ -57,24 +62,18 @@ const StaticSidebar: React.FC = ({ children }) => {
           }),
         }}
       >
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <List>
+        <Grid className={classes.shameFlex} container spacing={3}>
+          <Grid className={classes.shameFlex} item xs={3}>
+            <List className={classes.list}>
+              <StaticSidebarIcon className={classes.listItem}>
+                <Logo onClick={() => { handleDrawerOpen() }} />
+              </StaticSidebarIcon>
               {navbar
-                .map(({ onClick, href, icon: c, name }) => {
-                  let element: JSX.Element | null = null;
-                  if (href) {
-                    element = <Link href={href} key={name}>{c}</Link>
-                  } else if (onClick) {
-                    element = <IconButton onClick={onClick} key={name}>{c}</IconButton>
-                  } else {
-                    throw Error("StaticSidebar.tsx:Element neither button nor link")
-                  }
-                  return { element, name }
-                })
-                .map(({ element, name }, i) => (
-                  <StaticSidebarIcon key={name}>{element}</StaticSidebarIcon>
-                ))}
+                .map(({ href, icon: c, name }) =>
+                  <StaticSidebarIcon className={classes.listItem} key={name}>
+                    <Link href={href} >{c}</Link>
+                  </StaticSidebarIcon>
+                )}
             </List>
           </Grid>
           {open && children}
