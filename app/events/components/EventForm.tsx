@@ -17,6 +17,7 @@ import { EventInput, EventInputDefault, EventInputType } from "../validations"
 import { durationData, strings } from "app/constants"
 import { Suspense } from "react";
 import { getDatetime } from "app/utils";
+import AddEventMap from "app/components/AddEventMap";
 type EventFormProps = {
   onSubmit: (event: object) => void
 }
@@ -48,11 +49,9 @@ const EventForm: React.FC<EventFormProps> = (props) => {
       'aria-label': strings.event.date,
     }}
     />,
-
     <KeyboardTimePicker margin="normal" id="time-picker" name="time" label={strings.event.time} dateFunsUtils={DateFnsUtils} KeyboardButtonProps={{
       'aria-label': strings.event.time,
     }}
-
     />,
     <Select name="duration" data={durationData} label={strings.event.duration}
     />,
@@ -85,6 +84,9 @@ const EventForm: React.FC<EventFormProps> = (props) => {
                 {item}
               </Grid>
             ))}
+            <Grid item className={classes.maxWidth} >
+              <AddEventMap addEventLocation={console.log}></AddEventMap>
+            </Grid>
           </Grid>
         </Form>
       </Container>
