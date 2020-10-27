@@ -10,45 +10,35 @@ import faker from "faker";
  */
 
 
- /*
- * Can't seed with faker but 
- *
- * `yarn blitz c` will enter the console and allow manual modification of db records
+/*
+*
+* 
  * 
+* 
+* db is working 
  * db is working 
- */
+* db is working 
+*/
+
+
+// to see data in web app run in the terminal:
+//  `yarn blitz db seed`
+
+// if seed is taking too long press ctrl + c  it should get unstuck and finish seeding
+
+// to reset db:
+// delete db/migrations folder
+// delete db.sqlite
+// run in the terminal:
+//  `yarn blitz db seed`
+
+//  `yarn blitz c` will enter the console and allow manual modification of db records
+
 
 const seed = async () => {
-  const mindfulness = await db.category.create({data: {name: "Mindfulness"}})
-  const spiritual = await db.category.create({data: {name: "Spiritual"}})
-  const focused = await db.category.create({data: {name: "Focused"}})
-  const movement = await db.category.create({data: {name: "Movement"}})
-  const mantra = await db.category.create({data: {name: "Mantra"}})
-  
-  const event =  await db.event.create({data: {name: `Meditation`, title: `editation`, description: 'Peaceful', datetime: new Date(), duration: 30, online: true, location: "LA",Category: {connect: {id: 1,},},},})
-  for (let i = 0; i < 10; i++) {
-    await db.event.create({
-      data: {
-        name: `${faker.date.weekday()} Meditation`, 
-        title: `Peaceful Meditation`, 
-        description: faker.random.words(), 
-        datetime: faker.date.future(), 
-        duration: Math.floor(Math.random() * (90 - 30) + 30), 
-        online: Math.random() >= 0.5, 
-        location: faker.address.city(),
-        Category: {
-          connect: {
-            id: Math.floor(Math.random() * (5 - 1) + 1),
-          },
-        },
-        User: {
-          connect: {
-            id: Math.floor(Math.random() * (5 - 1) + 1),
-          },
-        },
-      },
-    })
-  }
+  const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra", "Zen", "Kundalini"]
+
+  const categories = await Promise.all(categoryNames.map((name) => db.category.create({ data: { name } })))
 
   for (let i = 0; i < 20; i++) {
     await db.user.create({
@@ -59,8 +49,28 @@ const seed = async () => {
       },
     })
   }
-  
-  
+
+  for (let i = 0; i < 10; i++) {
+    const date = faker.date.future()
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    await db.event.create({
+      data: {
+        name: `${days[date.getDay()]}'s Meditation`,
+        title: `Satsang Meditation`,
+        description: `Session from the city of ${faker.address.city()}`,
+        datetime: date,
+        duration: Math.floor(Math.random() * (9 - 3) + 3),
+        online: Math.random() >= 0.5,
+        location: faker.address.city(),
+        Category: {
+          connect: {
+            id: Math.floor(Math.random() * (7 - 1) + 1),
+          },
+        },
+      },
+    })
+  }
+
 }
 
 export default seed;
