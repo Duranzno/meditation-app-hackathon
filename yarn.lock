@@ -8852,6 +8852,14 @@ here-maps-react@2.0.0:
   dependencies:
     lodash.debounce "^4.0.8"
 
+here-maps-type-guards@2.0.19:
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/here-maps-type-guards/-/here-maps-type-guards-2.0.19.tgz#d9da4738d489dbcf02c06cd28cff13481b7a3a95"
+  integrity sha512-2U5HdhgsiABqkSUO/nN/q9NeP2zF9YJnShu7nl5lcbTHQh2/cESj59+MPLKVx9UyF6faHj+hUzpvjlZbhkHVAw==
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    tslib "^2.0.3"
+
 highlight.js@~9.15.0, highlight.js@~9.15.1:
   version "9.15.10"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.10.tgz"
@@ -15579,7 +15587,7 @@ tslib@^1, tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.0, tslib@^2.0.1:
+tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==

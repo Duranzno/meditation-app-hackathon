@@ -24,13 +24,12 @@ interface Event {
 }
 
 interface Props {
-  events: Event[]
+  events?: Event[]
 }
 const HereMap: React.FC<Props> = ({ events }) => {
-  // const {
-  //   HERE_MAPS_API_KEY: apiKey
-  // } = process.env;
-
+  const {
+    NEXT_PUBLIC_HERE_MAPS_API_KEY: apiKey
+  } = process.env;
   const { latitude: lat, longitude: lng } = usePosition();
   const [center, setCenter] = React.useState({ lat: 10.998666, lng: -63.79841 })
   React.useEffect(() => {
@@ -38,32 +37,33 @@ const HereMap: React.FC<Props> = ({ events }) => {
   }, [lng, lat, setCenter])
 
   const classes = useStyles()
+  const onInteract = (e) => { console.log(e); };
+  // const apiKey = "Jgc8a8TVMJPfBPyoh5gtW9xcz0xDQ79AZnOFkcTXxD0";
   return (
     <Grid className={classes.root} container display="column" justify="center" alignItems="center">
       <div className={classes.map} >
         <HEREMap
           center={center}
           zoom={12}
+          hidpi
+          interactive
           mapContainerId="hereMapId"
-          apikey={"Jgc8a8TVMJPfBPyoh5gtW9xcz0xDQ79AZnOFkcTXxD0"}
+          apikey={apiKey}
         >
-          {/* {events.map(({ lat, lng }) => {
-            return (<Marker
-              lat={lat}
-              lng={lng}
-              key={lat + " " + lng}
-              draggable
-            />
+          {events.map(({ lat, lng }) => {
+            return (
+              <Marker
+                lat={center.lat}
+                lng={center.lng}
+                onTap={onInteract}
+                draggable
+                key={lat + " " + lng}
+              />
             )
-          })} */}
+          })}
         </HEREMap>
       </div>
     </Grid>
   )
-}
-HereMap.defaultProps = {
-  events: [
-    [{ lat: 10.9985, lng: -63.79840 }]
-  ]
 }
 export default HereMap
