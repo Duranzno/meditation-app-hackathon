@@ -9,11 +9,10 @@ import { useCurrentUser } from "app/hooks/useCurrentUser"
  */
 
 interface Props {
-  events: string[]
   openNewEvent: () => void
 }
 
-const TimelineSidebar: React.FC<Props> = ({ events, openNewEvent }) => {
+const TimelineSidebar: React.FC<Props> = ({ openNewEvent }) => {
   const currentUser = useCurrentUser() 
   const joinedEvents = currentUser?.Event
   joinedEvents?.sort((a,b)=> a.datetime - b.datetime)

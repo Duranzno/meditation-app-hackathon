@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Suspense, useReducer } from "react"
-import { Form, Field } from 'react-final-form'
 import {
   Button,
   CardActions,
@@ -10,7 +9,6 @@ import {
   Card,
   Typography,
   MenuItem,
-  Menu,
 } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import createEvent from "app/events/mutations/createEvent"
@@ -150,10 +148,13 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 helperText="Please select a Category"
                 onChange={e => handleOnChange(e)}
               >
-                <MenuItem key="s" value="7">Spiritual</MenuItem>
-                <MenuItem key="m" value="8">Mindfulness</MenuItem>
-                <MenuItem key="f" value="9">Focused</MenuItem>
-                <MenuItem key="mo" value="10">Movement</MenuItem>
+                <MenuItem key="Spiritual" value="1">Mindfulness</MenuItem>
+                <MenuItem key="Mindfulness" value="2">Spiritual</MenuItem>
+                <MenuItem key="Focused" value="3">Focused</MenuItem>
+                <MenuItem key="Movement" value="4">Movement</MenuItem>
+                <MenuItem key="Mantra" value="5">Mantra</MenuItem>
+                <MenuItem key="Zen" value="6">Zen</MenuItem>
+                <MenuItem key="Kundalini" value="7">Kundalini</MenuItem>
               </TextField>
           </CardContent>
 
@@ -202,10 +203,3 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
 }
 
 export default EventForm
-
-let mockCategories: Array<object>  = [
-  {data: {id: 7, name: "Spiritual"}},
-  {data: {id: 8, name: "Mindfulness"}},
-  {data:  {id: 9, name: "Focused"}},
-  {data: {id: 10, name: "Movement"}}
-]

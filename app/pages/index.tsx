@@ -13,7 +13,7 @@ const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
 
-  if (currentUser) {
+  if (!currentUser) {
     return (
       <>
         <button
