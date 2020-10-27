@@ -10,18 +10,19 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import faker from 'faker';
 import EventModal from './EventModal'
+import { useRouter } from 'blitz'
 
 interface Props {
-    event: {
-      name: string; 
-      title: string; 
-      description: string; 
-      datetime: Date; 
-      duration: number;
-      online: Boolean; 
-      location: string;
-    };
-    id: number;
+  event: {
+    name: string;
+    title: string;
+    description: string;
+    datetime: Date;
+    duration: number;
+    online: Boolean;
+    location: string;
+  };
+  id: number;
 }
 
 const useStyles = makeStyles({
@@ -41,44 +42,50 @@ const useStyles = makeStyles({
 // TODO: This will be the card for an Event that has images
 
 const DetailedEventCard: React.FC<Props> = (props: Props) => {
-    const classes = useStyles();
-    const [open, setOpen] = useState()
-    const handleClose =() => {
-      setOpen(false)
-    }
-    return (
-      <>
-          <EventModal open={open} event={props.event} handleClose={handleClose}/>
-        <Card className={classes.root}>
-      <CardActionArea onClick={() => setOpen(true)}>
-        <CardMedia
-          className={classes.media}
-          image={faker.image.nature()}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {/* {console.log(props.event)} */}
-            {props.event.name}
+  const classes = useStyles();
+  const router = useRouter()
+  const [open, setOpen] = useState()
+  const handleClose = () => {
+    setOpen(false)
+  }
+  console.log(props)
+  return (
+    <>
+      <EventModal open={open} event={props.event} handleClose={handleClose} />
+      <Card className={classes.root}>
+        <CardActionArea onClick={() => setOpen(true)}>
+          <CardMedia
+            className={classes.media}
+            image={faker.image.nature()}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {/* {console.log(props.event)} */}
+              {props.event.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.event.datetime.toString()}
+              <br />
+              {props.event.duration} mins
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-          {props.event.datetime.toString()}
-          <br/>
-          {props.event.duration}0 mins
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Add
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Add
         </Button>
-        <Button size="small" color="primary">
-          Learn More
+          <Button size="small" color="primary">
+            Details
         </Button>
-      </CardActions>
-    </Card>
+          <Button size="small" color="primary" onClick={() => { router.push(`${router.pathname}/${props.event.id}/room`) }} >
+            Join
+        </Button>
+
+        </CardActions>
+      </Card>
     </>
-    )
+  )
 }
 
 export default DetailedEventCard

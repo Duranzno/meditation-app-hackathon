@@ -51,6 +51,7 @@
     "react-dropzone": "11.2.0",
     "react-error-boundary": "2.3.2",
     "react-final-form": "6.x",
+    "react-jitsi": "1.0.4",
     "sass": "1.27.0",
     "secure-password": "4.x",
     "use-position": "0.0.8",
