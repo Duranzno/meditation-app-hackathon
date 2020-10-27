@@ -4,7 +4,7 @@
   "scripts": {
     "start-blitz": "blitz db migrate && blitz start",
     "start": "yarn start-blitz",
-    "seed": "rimraf db/db.sqlite db/migrations && yarn blitz db seed",
+    "seed": "rimraf db/db.sqlite db/migrations && yarn blitz db migrate && yarn blitz db seed",
     "start:docker": "docker-compose up -d && yarn start-blitz",
     "studio": "blitz db studio",
     "build": "NODE_ENV=production blitz db migrate && blitz build",
