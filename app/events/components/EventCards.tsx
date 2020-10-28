@@ -23,8 +23,8 @@ const ITEMS_PER_PAGE = 100;
 
 const EventCardsContainer: React.FC<any> = (props) => {
   const classes = useStyles()
+  // TODO: this relies on the category, need to double check after merge that it still works
   const [categoryId, setCategoryId] = useState(0)
-  console.log(props);
   const renderCards = () => {
     let filteredEvents;
     categoryId ? filteredEvents = props.events.filter(event => event.categoryId === parseInt(categoryId)) : filteredEvents = props.events

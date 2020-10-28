@@ -60,8 +60,8 @@ export const EventRoom: BlitzPage = () => {
   )
 }
 
-export async function getServerSideProps(ctx) {
+// export async function getServerSideProps(ctx) {
 
-}
+// }
 
 export default EventRoom;
