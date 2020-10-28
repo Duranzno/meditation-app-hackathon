@@ -4,20 +4,24 @@ import Grid from '@material-ui/core/Grid';
 
 
 interface Props {
-  cards: Array<object>
+  events: Array<object>
 }
 
 const CardsContainer: React.FC<Props> = (props) => {
   const renderCards = () => {
-    console.log(props.cards)
-    return props.cards.map((card: {
-      title: string;
-      date: string;
-      time: string;
-    }) => {
+    console.log(props.events)
+    return props.events.map((event: {
+      data: object;
+    }, i) => {
       return (
-        <Grid item xs={3} key={card.title}>
-          <DetailedEventCard card={card} />
+        <Grid 
+        item 
+        xs={3}                 
+        justify="center"
+        direction="row"
+        alignItems="flex-start" 
+        key={i}>
+          <DetailedEventCard event={event.data} />
         </Grid>
 
       )
@@ -26,16 +30,15 @@ const CardsContainer: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="container">
-        <Grid
-          container
-          item
-          justify="center"
-          direction="row"
-          alignItems="flex-start"
-          xs={12}
-          spacing={4}
-        >
+      <div style={{ width: "1200px"}}>
+      <Grid 
+            container 
+            item 
+            direction="row" 
+            alignItems="flex-start" 
+            xs={12} 
+            spacing={3}
+            >
           {renderCards()}
         </Grid>
       </div>
