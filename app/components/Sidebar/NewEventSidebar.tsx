@@ -42,8 +42,6 @@ const NewEventSidebar: React.FC<Props> = ({ open, onClose }) => {
           <OldEventForm initialValues={newEventValues} onSubmit={async evt => {
             try {
               // TODO: properly type this mutation...
-              console.log("HERE")
-              console.log(evt)
               const event = await createEventMutation({
                 data: {
                   name: evt.name,
@@ -56,7 +54,7 @@ const NewEventSidebar: React.FC<Props> = ({ open, onClose }) => {
                 }
               })
               alert("Success!" + JSON.stringify(event))
-              router.push("/events/[eventId]", `/events/${event.id}`)
+              router.push("/events")
             } catch (error) {
               alert("Error creating event " + JSON.stringify(error, null, 2))
             }
