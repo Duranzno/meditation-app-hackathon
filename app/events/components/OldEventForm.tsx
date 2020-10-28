@@ -2,14 +2,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Suspense } from "react"
 import {
-  Button,
-  CardActions,
   CardContent,
-  FormControl,
-  TextField,
   Card,
   Typography,
-  MenuItem,
+  TextField,
+  Button
 } from "@material-ui/core"
 import { Form, Field } from 'react-final-form'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -48,6 +45,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+const adapt /* ⬅️ this is a HOC */ = Component => ({
+  input,
+  meta: { valid },
+  ...rest
+}) => <Component {...input} {...rest} valid={valid} />
+
+const AdaptedTextField = adapt(TextField)
+
 const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
   // TODO: replace HTML5 input/form components with react-bootstrap
   const classes = useStyles()
@@ -63,47 +68,42 @@ const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
             render={({ handleSubmit, form, values }) => (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label> Session Name </label>
                   <Field
                     name="name"
-                    component="input"
+                    component={AdaptedTextField}
                     type="text"
                   />
                 </div>
                 <div>
-                  <label> Session Title </label>
                   <Field
                     name="title"
-                    component="input"
+                    component={AdaptedTextField}
                     type="text"
                   />
                 </div>
                 <div>
-                  <label> Description </label>
                   <Field
                     name="description"
-                    component="textarea"
+                    component={AdaptedTextField}
                     type="input"
                   />
                 </div>
                 <div>
-                  <label> Time </label>
                   <Field
                     name="datetime"
-                    component="input"
+                    component={AdaptedTextField}
                     type="datetime-local"
                   />
                 </div>
                 <div>
-                  <label> Duration (mins) </label>
                   <Field
                     name="duration"
-                    component="input"
+                    component={AdaptedTextField}
                     type="number"
                   />
                 </div>
+                <br></br>
                 <div>
-                  <label> Session Type </label>
                   <Field name="online" component="select">
                     <option value="true" selected>Online</option>
                     <option value="false">In-Person</option>
@@ -117,8 +117,7 @@ const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
                 select
                 helperText="Please select a Category"
               > */}
-                  <label> Category </label>
-              
+              <br></br>
               <Field name="category" component="select">
 
                 <option key="Mindfulness" value="Mindfulness">Mindfulness</option>
@@ -130,15 +129,15 @@ const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
                 <option key="Kundalini" value="Kundalini">Kundalini</option>
               </Field>
                 <div className="buttons">
-                  <button type="submit">
+                  <Button type="submit">
                     Submit
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
                     onClick={form.reset}
                   >
                     Reset
-            </button>
+            </Button>
                 </div>
               </form>
             )
