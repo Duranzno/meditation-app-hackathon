@@ -108,11 +108,31 @@ const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
                     <option value="true" selected>Online</option>
                     <option value="false">In-Person</option>
                   </Field>
+
+
                 </div>
+                              {/* <TextField
+                label="Category"
+                name="category"
+                select
+                helperText="Please select a Category"
+              > */}
+                  <label> Category </label>
+              
+              <Field name="category" component="select">
+
+                <option key="Mindfulness" value="Mindfulness">Mindfulness</option>
+                <option key="Spiritual" value="Spiritual">Spiritual</option>
+                <option key="Focused" value="Focused">Focused</option>
+                <option key="Yoga" value="Yoga">Yoga</option>
+                <option key="Mantra" value="Mantra">Mantra</option>
+                <option key="Zen" value="Zen">Zen</option>
+                <option key="Kundalini" value="Kundalini">Kundalini</option>
+              </Field>
                 <div className="buttons">
                   <button type="submit">
                     Submit
-            </button>
+                  </button>
                   <button
                     type="button"
                     onClick={form.reset}
@@ -131,5 +151,7 @@ const EventForm = ({ initialValues, onSubmit }: EventFormProps) => {
     </Suspense>
   )
 }
+
+
 
 export default EventForm

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import DetailedEventCard from '../../components/Event/DetailedEventCard'
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -24,10 +24,12 @@ const ITEMS_PER_PAGE = 100;
 const EventCardsContainer: React.FC<any> = (props) => {
   const classes = useStyles()
   // TODO: this relies on the category, need to double check after merge that it still works
-  // const [categoryId, setCategoryId] = useState(0)
+  const [category, setCategory] = useState('')
+  // console.log(category)
   const renderCards = () => {
-    let filteredEvents;
-    props.category ? filteredEvents = props.events.filter(event => event.category === props.category) : filteredEvents = props.events
+    let filteredEvents = props.events
+
+    filteredEvents = props.events.filter(event => event.category.includes(category))
 
     return (filteredEvents.map((event: {
       data: object;
@@ -43,6 +45,7 @@ const EventCardsContainer: React.FC<any> = (props) => {
 
 
           <DetailedEventCard event={event} />
+          {console.log(event.category)}
         </Grid>
       )
     }))
@@ -52,12 +55,12 @@ const EventCardsContainer: React.FC<any> = (props) => {
     return categories.map((category) => {
       return (
         <Button
-        // data-id={category.data.id}
-        // onClick={(e) => {
-        //   setCategoryId(e.currentTarget.getAttribute("data-id"))
-        // }}
+        data-name={category.name}
+        onClick={(e) => {
+          setCategory(e.currentTarget.getAttribute("data-name"))
+        }}
         >
-          {category.data.name}
+          {category.name}
         </Button>
       )
     })
@@ -67,8 +70,8 @@ const EventCardsContainer: React.FC<any> = (props) => {
     <main className={classes.content}>
       <div className={classes.toolbar} />
       <div style={{ width: "1100px" }}>
-        {/* <Button onClick={() => setCategoryId(0)}>All</Button> */}
-        {/* {renderCategories()} */}
+        <Button onClick={() => setCategory('')}>All</Button>
+        {renderCategories()}
         <br></br>
         <br></br>
         <Grid
@@ -90,10 +93,7 @@ export default EventCardsContainer
 
 
 
-let categories: Array<object> = [
-  { data: { name: "Mindfulness", id: 1 } },
-  { data: { name: "Spiritual", id: 2 } },
-  { data: { name: "Focused", id: 3 } },
-  { data: { name: "Movement", id: 4 } },
-  { data: { name: "Mantra", id: 5 } }
-]
+
+const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Yoga", "Mantra", "Zen", "Kundalini"]
+
+const categories = categoryNames.map((name, i) => { return { name: name, id: i } })

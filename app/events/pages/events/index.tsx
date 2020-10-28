@@ -49,7 +49,7 @@ const ITEMS_PER_PAGE = 100
 const EventsPage: BlitzPage = (props) => {
   const [openRSidebar, setOpenRSidebar] = useState(false);
   const data = JSON.parse(props.data)
-  console.log(data.events[0].id)
+  // console.log(data.events[0].id)
   return (
     <div>
       <p>

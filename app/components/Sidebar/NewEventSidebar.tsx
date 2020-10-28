@@ -51,6 +51,7 @@ const NewEventSidebar: React.FC<Props> = ({ open, onClose }) => {
                   duration: parseInt(evt.duration),
                   online: evt.online,
                   location: evt.location ? evt.location : "",
+                  category: evt.category ? evt.category : "",
                 }
               })
               alert("Success!" + JSON.stringify(event))
