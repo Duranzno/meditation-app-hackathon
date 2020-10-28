@@ -24,10 +24,10 @@ const ITEMS_PER_PAGE = 100;
 const EventCardsContainer: React.FC<any> = (props) => {
   const classes = useStyles()
   // TODO: this relies on the category, need to double check after merge that it still works
-  const [categoryId, setCategoryId] = useState(0)
+  // const [categoryId, setCategoryId] = useState(0)
   const renderCards = () => {
     let filteredEvents;
-    categoryId ? filteredEvents = props.events.filter(event => event.categoryId === parseInt(categoryId)) : filteredEvents = props.events
+    props.category ? filteredEvents = props.events.filter(event => event.category === props.category) : filteredEvents = props.events
 
     return (filteredEvents.map((event: {
       data: object;
@@ -52,10 +52,10 @@ const EventCardsContainer: React.FC<any> = (props) => {
     return categories.map((category) => {
       return (
         <Button
-          data-id={category.data.id}
-          onClick={(e) => {
-            setCategoryId(e.currentTarget.getAttribute("data-id"))
-          }}
+        // data-id={category.data.id}
+        // onClick={(e) => {
+        //   setCategoryId(e.currentTarget.getAttribute("data-id"))
+        // }}
         >
           {category.data.name}
         </Button>
@@ -67,8 +67,8 @@ const EventCardsContainer: React.FC<any> = (props) => {
     <main className={classes.content}>
       <div className={classes.toolbar} />
       <div style={{ width: "1100px" }}>
-        <Button onClick={() => setCategoryId(0)}>All</Button>
-        {renderCategories()}
+        {/* <Button onClick={() => setCategoryId(0)}>All</Button> */}
+        {/* {renderCategories()} */}
         <br></br>
         <br></br>
         <Grid

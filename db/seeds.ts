@@ -38,7 +38,7 @@ import faker from "faker";
 const seed = async () => {
   const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra", "Zen", "Kundalini"]
 
-  const categories = await Promise.all(categoryNames.map((name) => db.category.create({ data: { name } })))
+  // const categories = await Promise.all(categoryNames.map((name) => db.category.create({ data: { name } })))
 
   for (let i = 0; i < 20; i++) {
     await db.user.create({
@@ -52,7 +52,7 @@ const seed = async () => {
 
   for (let i = 0; i < 10; i++) {
     const date = faker.date.future()
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     await db.event.create({
       data: {
         name: `${days[date.getDay()]}'s Meditation`,
@@ -62,11 +62,11 @@ const seed = async () => {
         duration: Math.floor(Math.random() * (9 - 3) + 3),
         online: Math.random() >= 0.5,
         location: faker.address.city(),
-        Category: {
-          connect: {
-            id: Math.floor(Math.random() * (7 - 1) + 1),
-          },
-        },
+        // Category: {
+        //   connect: {
+        //     id: Math.floor(Math.random() * (7 - 1) + 1),
+        //   },
+        // },
       },
     })
   }

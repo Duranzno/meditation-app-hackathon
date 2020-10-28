@@ -5,7 +5,7 @@ import createEvent from "app/events/mutations/createEvent"
 import EventForm from "app/events/components/EventForm"
 // import { useCurrentUser } from 'app/hooks/useCurrentUser'
 // TODO: migrate from events/new page to modal/sidebar components integrated with events index page
-
+// new EventForm breaks this page
 const defaults = {
   "tags": ["meditation"],
   "name": "My Meditation Session",

@@ -13,54 +13,56 @@ import {
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useMutation, useQuery, useSession } from 'blitz';
 import updateUser from "app/users/mutations/updateUser";
+import createEvent from "app/events/mutations/createEvent"
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getUser from "app/users/queries/getUser";
 
-
+import { Form, Field } from 'react-final-form'
 
 type EventFormProps = {
-  newEventValues: any
+  newEventValues: any,
+  onSubmit: any,
 }
 
 
-const reducer = (state, {field, value}) => {
-  return{
+const reducer = (state, { field, value }) => {
+  return {
     ...state,
     [field]: value
   }
 }
 
-const useStyles = makeStyles((theme: Theme) => 
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: "auto",
-  },
-  root: {
-    minWidth: 70,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 20,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-})
+    list: {
+      width: 250,
+    },
+    fullList: {
+      width: "auto",
+    },
+    root: {
+      minWidth: 70,
+    },
+    bullet: {
+      display: "inline-block",
+      margin: "0 2px",
+      transform: "scale(0.8)",
+    },
+    title: {
+      fontSize: 20,
+    },
+    pos: {
+      marginBottom: 12,
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+  })
 );
 
-const EventForm = ({ newEventValues }: EventFormProps) => {
+const EventForm = ({ newEventValues, onSubmit }: EventFormProps) => {
   // TODO: replace HTML5 input/form components with react-bootstrap
   const classes = useStyles()
 
@@ -68,14 +70,15 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
   // const currentUser = useCurrentUser()
   // const categories = useQuery(getCategories, {orderBy: {id: 'asc'}})
   const [updateUserMutation] = useMutation(updateUser)
+  const [createEventMutation] = useMutation(createEvent)
   const session = useSession()
   const currentUser = useCurrentUser()
 
   const [state, dispatch] = useReducer(reducer, newEventValues)
-  const {name, title, description, datetime, duration, online, location, category} = state
- 
+  const { name, title, description, datetime, duration, online, location, category } = state
+
   const handleOnChange = (e) => {
-    dispatch({ field: e.target.name, value: e.target.value})
+    dispatch({ field: e.target.name, value: e.target.value })
   }
 
   const renderForm = () => {
@@ -83,8 +86,9 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
     console.log(cuId)
     return (
       <FormControl>
-            <Card className={classes.root}>
-              <CardContent>
+        <Form onSubmit={onSubmit}>
+          <Card className={classes.root}>
+            <CardContent>
               <Typography className={classes.title}>Add new event</Typography>
               <TextField
                 onChange={e => handleOnChange(e)}
@@ -94,7 +98,7 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 type="text"
               />
               <br></br>
-              <TextField 
+              <TextField
                 onChange={e => handleOnChange(e)}
                 label="Session Title"
                 name="title"
@@ -111,7 +115,7 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 multiline
                 type="input"
               />
-              <br></br>              
+              <br></br>
               <TextField
                 id="datetime-local"
                 label="Time"
@@ -131,9 +135,9 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 onChange={e => handleOnChange(e)}
               />
               <br></br>
-              <TextField 
-                label="Session Type" 
-                name="online" 
+              <TextField
+                label="Session Type"
+                name="online"
                 select
                 helperText="Please select Online of In-Person"
                 onChange={e => handleOnChange(e)}
@@ -142,9 +146,9 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 <MenuItem value="false">In-Person</MenuItem>
               </TextField>
               <br></br>
-              <TextField 
-                label="Category" 
-                name="category" 
+              <TextField
+                label="Category"
+                name="category"
                 select
                 helperText="Please select a Category"
                 onChange={e => handleOnChange(e)}
@@ -157,57 +161,69 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
                 <MenuItem key="Zen" value="Zen">Zen</MenuItem>
                 <MenuItem key="Kundalini" value="Kundalini">Kundalini</MenuItem>
               </TextField>
-          </CardContent>
+            </CardContent>
 
-          <CardActions>
-            <Button 
-            onClick={async () => {
-                try {                 
-                  const newEventByCU = await updateUserMutation({
-                    where: { id: cuId},
-                    data: { 
-                      events: {
-                        create: [
-                          {
-                            name: state.name, 
-                            title: state.title, 
-                            description: state.description, 
-                            datetime: new Date(Date.parse(state.datetime)), 
-                            duration: parseInt(state.duration), 
-                            online: state.online === "true" ? true : false, 
-                            location: state.location,
-                            category: state.category                                        
-                          }
-                        ],
+            <CardActions>
+              <Button
+                onClick={async evt => {
+                  try {
+                    // const newEventByCU = await updateUserMutation({
+                    //   where: { id: cuId },
+                    //   data: {
+                    //     events: {
+                    //       create: [
+                    //         {
+                    //           name: state.name,
+                    //           title: state.title,
+                    //           description: state.description,
+                    //           datetime: new Date(Date.parse(state.datetime)),
+                    //           duration: parseInt(state.duration),
+                    //           online: state.online === "true" ? true : false,
+                    //           location: state.location,
+                    //           category: state.category
+                    //         }
+                    //       ],
+                    //     }
+                    //   },
+                    // })
+                    // console.log(newEventByCU)
+                    // alert("success")
+                    console.log("HERE")
+                    console.log(evt)
+                    const event = await createEventMutation({
+                      data: {
+                        name: evt.name,
+                        title: evt.title,
+                        description: evt.description,
+                        datetime: new Date(evt.datetime),
+                        duration: evt.duration,
+                        online: evt.online,
+                        location: evt.location ? evt.location : "",
                       }
-                    },
-                  })
-                  console.log(newEventByCU)
-                  alert("success")
-                } catch (error) {
-                  console.log(error)
-                  alert("Error creating event " + JSON.stringify(error, null, 2))
+                    })
+                    return event;
+                  } catch (error) {
+                    console.log(error)
+                    alert("Error creating event " + JSON.stringify(error, null, 2))
+                  }
                 }
-              }
-            }
-            type="submit" 
-            size="small"
-            >Submit Event
+                }
+                type="submit"
+                size="small"
+              >Submit Event
             </Button>
-          </CardActions>
+            </CardActions>
           </Card>
-          </FormControl>
+        </Form>
+      </FormControl>
     )
   }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {console.log(session)}
-      {/* {console.log(currentUser)} */}
-      {/* {console.log(currentUser.id)} */}
-      {/* {console.log(cuId)} */}
       {currentUser ? renderForm() : null}
-          
+
 
     </Suspense>
   )
@@ -215,7 +231,7 @@ const EventForm = ({ newEventValues }: EventFormProps) => {
 
 const categoryNames = ["Mindfulness", "Spiritual", "Focused", "Movement", "Mantra", "Zen", "Kundalini"]
 
-const categories = categoryNames.map((name, i) => {return { name: name, id: i } })
+const categories = categoryNames.map((name, i) => { return { name: name, id: i } })
 
 
 export default EventForm
